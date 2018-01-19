@@ -1,5 +1,7 @@
 package de.id4i.samples.client.java;
 
+import com.squareup.okhttp.Call;
+import de.id4i.ApiCallback;
 import de.id4i.ApiException;
 import de.id4i.api.MetaInformationApi;
 import de.id4i.api.model.AppInfoPresentation;
@@ -7,7 +9,10 @@ import io.jsonwebtoken.Header;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 
+import java.io.IOException;
 import java.util.Date;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Hello ID4i!
@@ -19,7 +24,7 @@ public class App {
 
     private String jwt;
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException, ApiException {
         App app = new App();
         app.start();
     }
@@ -47,21 +52,59 @@ public class App {
         return jwt;
     }
 
-    private void start() {
+    private void start() throws IOException, ApiException {
         jwt = createAccessToken();
+
         System.out.println("Created access token " + jwt);
 
+        callApiInfo();
+
+        // You can also try the async call.
+        // Please note that the application will take some time to close in that case.
+        // callApiInfoAsync();
+    }
+
+    private void callApiInfo() {
         MetaInformationApi apiInstance = new MetaInformationApi();
-        String authorization = "Bearer " + jwt; // String | Authorization JWT Bearer Token as returned from /login
-        String acceptLanguage = "de"; // String | Requested language
+        String authorization = "Bearer " + jwt;
         try {
-            AppInfoPresentation result = apiInstance.applicationInfo(authorization, acceptLanguage);
+            AppInfoPresentation result = apiInstance.applicationInfo(authorization, "en");
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling MetaInformationApi#applicationInfo");
             e.printStackTrace();
         }
+    }
 
+    private void callApiInfoAsync() throws IOException, ApiException {
+        MetaInformationApi apiInstance = new MetaInformationApi();
+        String authorization = "Bearer " + jwt;
+
+        ApiCallback<AppInfoPresentation> callback = createApiInfoCallback();
+        apiInstance.applicationInfoAsync(authorization, "en", callback);
+    }
+
+    private ApiCallback<AppInfoPresentation> createApiInfoCallback() {
+        return new ApiCallback<AppInfoPresentation>() {
+
+            public void onFailure(ApiException e, int i, Map<String, List<String>> map) {
+                System.err.println("Exception when calling MetaInformationApi#applicationInfo");
+            }
+
+            public void onSuccess(AppInfoPresentation appInfoPresentation, int i, Map<String, List<String>> map) {
+                System.out.println(appInfoPresentation);
+            }
+
+            public void onDownloadProgress(long bytesRead, long contentLength, boolean done) {
+                System.out.println("received " + bytesRead + " bytes");
+                if (done) System.out.println("done");
+            }
+
+            public void onUploadProgress(long bytesWritten, long contentLength, boolean done) {
+                System.out.println("received " + bytesWritten + " of " + contentLength);
+                if (done) System.out.println("done");
+            }
+        };
     }
 
 
