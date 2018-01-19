@@ -64,7 +64,7 @@ public class App {
         MetaInformationApi apiInstance = new MetaInformationApi();
         apiInstance.setApiClient(myCustomApiClient);
 
-        String authorization = "Bearer x" + jwt;
+        String authorization = "Bearer " + jwt;
         String acceptLanguage = "en";
         callApiInfo(apiInstance, authorization, acceptLanguage);
 
