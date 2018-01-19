@@ -1,4 +1,4 @@
-package de.id4i.samples;
+package de.id4i.samples.client.java;
 
 import junit.framework.Test;
 import junit.framework.TestCase;

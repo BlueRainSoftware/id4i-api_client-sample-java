@@ -41,5 +41,16 @@ Now clone this repository and you are good to go.
 
 == Run
 
+Before running, you need to set two environment variables to tell the app which API key and secret to use:
+`ID4I_API_KEY` and `ID4I_API_KEY_SECRET`. During development you will typically do this in your IDEs run configuration.
+
+Having built the jar, you can just run it.
+
+```
+$ ID4I_API_KEY=19323ddfc-27a2-43cd-ad51-bfe23a87b32234f
+$ ID4I_API_KEY_SECRET=qaSdm4G94ojfsdklmUW7VIw3RJeYinKkxBu/6z8Sjvlsz2+X"
+$ java -jar target/id4i-api-client-sample-java-1.0-SNAPSHOT-jar-with-dependencies.jar
+```
+
 == Contribute
 
