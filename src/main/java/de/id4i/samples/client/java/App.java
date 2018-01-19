@@ -79,8 +79,6 @@ public class App {
             ApiResponse<AppInfoPresentation> result = apiInstance.applicationInfoWithHttpInfo(authorization, acceptLanguage);
             System.out.println(result.getData());
         } catch (ApiException e) {
-            e.printStackTrace();
-
             // The response body contains a serizalized ApiError
             // Note that all business types are deserialized automatically.
             System.out.println(e.getResponseBody());
