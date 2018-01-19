@@ -2,6 +2,7 @@ package de.id4i.samples.client.java;
 
 import com.squareup.okhttp.Call;
 import de.id4i.ApiCallback;
+import de.id4i.ApiClient;
 import de.id4i.ApiException;
 import de.id4i.api.MetaInformationApi;
 import de.id4i.api.model.AppInfoPresentation;
@@ -57,18 +58,25 @@ public class App {
 
         System.out.println("Created access token " + jwt);
 
-        callApiInfo();
+        ApiClient myCustomApiClient = new ApiClient();
+        myCustomApiClient.setUserAgent("id4i-client-sample");
+        MetaInformationApi apiInstance = new MetaInformationApi();
+        apiInstance.setApiClient(myCustomApiClient);
+
+        String authorization = "Bearer " + jwt;
+        String acceptLanguage = "en";
+        callApiInfo(apiInstance, authorization, acceptLanguage);
+
 
         // You can also try the async call.
         // Please note that the application will take some time to close in that case.
-        // callApiInfoAsync();
+        // callApiInfoAsync(apiInstance, authorization, acceptLanguage);
     }
 
-    private void callApiInfo() {
-        MetaInformationApi apiInstance = new MetaInformationApi();
-        String authorization = "Bearer " + jwt;
+    private void callApiInfo(MetaInformationApi apiInstance, String authorization, String acceptLanguage) {
+
         try {
-            AppInfoPresentation result = apiInstance.applicationInfo(authorization, "en");
+            AppInfoPresentation result = apiInstance.applicationInfo(authorization, acceptLanguage);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling MetaInformationApi#applicationInfo");
@@ -76,12 +84,9 @@ public class App {
         }
     }
 
-    private void callApiInfoAsync() throws IOException, ApiException {
-        MetaInformationApi apiInstance = new MetaInformationApi();
-        String authorization = "Bearer " + jwt;
-
+    private void callApiInfoAsync(MetaInformationApi apiInstance, String authorization, String acceptLanguage) throws ApiException {
         ApiCallback<AppInfoPresentation> callback = createApiInfoCallback();
-        apiInstance.applicationInfoAsync(authorization, "en", callback);
+        apiInstance.applicationInfoAsync(authorization, acceptLanguage, callback);
     }
 
     private ApiCallback<AppInfoPresentation> createApiInfoCallback() {
