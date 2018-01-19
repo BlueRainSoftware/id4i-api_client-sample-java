@@ -1,16 +1,17 @@
 package de.id4i.samples.client.java;
 
+import com.google.gson.reflect.TypeToken;
 import com.squareup.okhttp.Call;
-import de.id4i.ApiCallback;
-import de.id4i.ApiClient;
-import de.id4i.ApiException;
+import de.id4i.*;
 import de.id4i.api.MetaInformationApi;
+import de.id4i.api.model.ApiError;
 import de.id4i.api.model.AppInfoPresentation;
 import io.jsonwebtoken.Header;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 
 import java.io.IOException;
+import java.lang.reflect.Type;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -63,10 +64,9 @@ public class App {
         MetaInformationApi apiInstance = new MetaInformationApi();
         apiInstance.setApiClient(myCustomApiClient);
 
-        String authorization = "Bearer " + jwt;
+        String authorization = "Bearer x" + jwt;
         String acceptLanguage = "en";
         callApiInfo(apiInstance, authorization, acceptLanguage);
-
 
         // You can also try the async call.
         // Please note that the application will take some time to close in that case.
@@ -76,11 +76,20 @@ public class App {
     private void callApiInfo(MetaInformationApi apiInstance, String authorization, String acceptLanguage) {
 
         try {
-            AppInfoPresentation result = apiInstance.applicationInfo(authorization, acceptLanguage);
-            System.out.println(result);
+            ApiResponse<AppInfoPresentation> result = apiInstance.applicationInfoWithHttpInfo(authorization, acceptLanguage);
+            System.out.println(result.getData());
         } catch (ApiException e) {
-            System.err.println("Exception when calling MetaInformationApi#applicationInfo");
             e.printStackTrace();
+
+            // The response body contains a serizalized ApiError
+            // Note that all business types are deserialized automatically.
+            System.out.println(e.getResponseBody());
+
+            // If you want to deserialize the API Error that was returned, you need to do the following
+            // It look a little ugly, but you can factor this out into common error handling code
+            // Type apiErrorType = (new TypeToken<ApiError>() {}).getType();
+            // ApiError apiError = apiInstance.getApiClient().getJSON().deserialize(e.getResponseBody(),apiErrorType);
+            // System.out.println(apiError);
         }
     }
 
