@@ -31,10 +31,7 @@ public class App {
         app.start();
     }
 
-    private String createAccessToken() {
-        String subject = System.getenv(ENV_API_KEY);
-        String secret = System.getenv(ENV_API_KEY_SECRET);
-
+    String createAccessToken(String subject, String secret) {
         if (subject == null || secret == null) {
             throw new IllegalStateException(
                 "Could not find API key and secret to create JWT. Are the environment variables "
@@ -55,7 +52,10 @@ public class App {
     }
 
     private void start() throws IOException, ApiException {
-        jwt = createAccessToken();
+        String subject = System.getenv(ENV_API_KEY);
+        String secret = System.getenv(ENV_API_KEY_SECRET);
+
+        jwt = createAccessToken(subject, secret);
 
         System.out.println("Created access token " + jwt);
 
