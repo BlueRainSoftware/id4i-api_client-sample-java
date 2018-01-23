@@ -12,6 +12,7 @@ import io.jsonwebtoken.SignatureAlgorithm;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
+import java.nio.charset.Charset;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -38,6 +39,7 @@ public class App {
                     + ENV_API_KEY + " and "
                     + ENV_API_KEY_SECRET + " set?");
         }
+        byte[] secretKey = secret.getBytes(Charset.forName("utf-8"));
         String jwt = Jwts.builder()
             .setSubject(subject)
             .setExpiration(new Date(System.currentTimeMillis() + 120000))
@@ -45,7 +47,7 @@ public class App {
             .setHeaderParam(Header.TYPE, "API")
             .signWith(
                 SignatureAlgorithm.HS512,
-                secret)
+                secretKey)
             .compact();
 
         return jwt;
