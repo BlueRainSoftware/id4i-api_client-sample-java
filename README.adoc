@@ -18,9 +18,11 @@ subsequent requests.
 . If you do not already have an ID4i account, please register at https://backend.id4i.de and log in.
 . Navigate to `API Keys` and select `New API Key`
 +
+.New API Key
 image::img/readme-new-api-key.png[]
 . Give your key a label and enter an application secret (or let the application generate one for you). footnote:[When using asymmetric signing, you would use your public key here.]
 +
+.API Key Label and Secret
 image::img/readme-new-api-key-2.png[]
 
 . Save your secret resp. your public key in a secure location.  For security reasons, you won't be able to display
@@ -28,11 +30,26 @@ this key again in ID4i.
 
 . Activate the key on the details page
 +
+.API Key Activation
 image::img/readme-new-api-key-3.png[]
 
 
 WARNING: Do not store your API Keys and Secrets with the source code of your application. Either supply the key as a configuration property of your application or retrieve it from your own server when required in the
 application. Use a separate API Key for each deployment of your application.
+
+For some tutorials, you will need also additional GUID collections, more than one API key and further organizations. These can be either created
+programmatically using the API or via the user interface as shown below.
+
+To create the *labelled collection* called `Product Batch`, use `Menu -> Collections -> New Collection (Product Batch, Labelled Collection)`.
+
+.New Collection
+image::img/create-labellled-collection.png[]
+
+To create an organization: `Menu -> Organizations -> New Organization (Reseller)`.
+
+.New Organization
+image::img/create-organization.png[]
+
 
 Now clone this repository and you are good to go.
 
