@@ -2,10 +2,10 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>de.id4i.samples</groupId>
-    <artifactId>api-client-java-first-client</artifactId>
+    <artifactId>api-client-java-guids</artifactId>
     <packaging>jar</packaging>
     <version>1.0-SNAPSHOT</version>
-    <name>ID4i API Client Samples - First Java Client</name>
+    <name>ID4i API Client Samples - Working with GUIDs and Collections</name>
 
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
@@ -45,7 +45,7 @@
                         <configuration>
                             <archive>
                                 <manifest>
-                                    <mainClass>de.id4i.samples.java.firstclient.App</mainClass>
+                                    <mainClass>de.id4i.samples.java.guids.App</mainClass>
                                 </manifest>
                             </archive>
                             <descriptorRefs>

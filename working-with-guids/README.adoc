@@ -1,0 +1,7 @@
+
+= ID4i API Client Example 2 - Working with GUIDs and Collections
+
+This module implements a first ID4i API client as described in the GUID and Collections tutorial
+at https://backend.id4i.de/docs/reference/en/reference.html#_how_to_work_with_guids_and_collections_using_the_java_api.
+
+The instructions on how to build and run this example is in  the parent module's README.

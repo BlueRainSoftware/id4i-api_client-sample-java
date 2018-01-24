@@ -18,17 +18,17 @@ subsequent requests.
 . If you do not already have an ID4i account, please register at https://backend.id4i.de and log in.
 . Navigate to `API Keys` and select `New API Key`
 +
-image::src/docs/img/readme-new-api-key.png[]
+image::img/readme-new-api-key.png[]
 . Give your key a label and enter an application secret (or let the application generate one for you). footnote:[When using asymmetric signing, you would use your public key here.]
 +
-image::src/docs/img/readme-new-api-key-2.png[]
+image::img/readme-new-api-key-2.png[]
 
 . Save your secret resp. your public key in a secure location.  For security reasons, you won't be able to display
 this key again in ID4i.
 
 . Activate the key on the details page
 +
-image::src/docs/img/readme-new-api-key-3.png[]
+image::img/readme-new-api-key-3.png[]
 
 
 WARNING: Do not store your API Keys and Secrets with the source code of your application. Either supply the key as a configuration property of your application or retrieve it from your own server when required in the

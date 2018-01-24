@@ -14,5 +14,6 @@
 
     <modules>
         <module>first-client</module>
+        <module>working-with-guids</module>
     </modules>
 </project>
