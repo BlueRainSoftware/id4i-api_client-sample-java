@@ -1,7 +1,7 @@
 
 = ID4i API Client Example - Java
 
-This repository contains an example API Client for http://id4i.de.
+This repository contains all example Java API Client for http://id4i.de.
 For detailed documentation of ID4i see https://backend.id4i.de/docs/reference/en/reference.html#_how_to_implement_an_api_client_in_java
 
 == Prerequisites
@@ -39,19 +39,24 @@ Now clone this repository and you are good to go.
 Please note that with the default settings, you will connect to the ID4i production system. Have a look into https://backend.id4i.de/docs/reference/en/reference.html#_how_to_implement_an_api_client_in_java
 for more details.
 
-
 == Build
 
 `mvn install` should do what you expect it to.
+Use it in the root module to build all clients or in each client module (i.e. sub-directory) separately.
 
 == Run
 
-Before running, you need to set two environment variables to tell the app which API key and secret to use:
+Each sample (module) has to be run separately.
+
+Before running a sample, you need to set at least two environment variables to tell the app which API key and secret to use:
 `ID4I_API_KEY` and `ID4I_API_KEY_SECRET`. During development you will typically do this in your IDEs run configuration.
 
 Having built the jar, you can just run it.
 
+See the description of the individual modules for additional instructions.
+
 ```
+$ cd first-client
 $ ID4I_API_KEY=19323ddfc-27a2-43cd-ad51-bfe23a87b32234f
 $ ID4I_API_KEY_SECRET=qaSdm4G94ojfsdklmUW7VIw3RJeYinKkxBu/6z8Sjvlsz2+X"
 $ java -jar target/id4i-api-client-sample-java-1.0-SNAPSHOT-jar-with-dependencies.jar

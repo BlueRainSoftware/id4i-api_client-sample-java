@@ -1,17 +1,13 @@
-package de.id4i.samples.client.java;
+package de.id4i.samples.java.firstclient;
 
-import com.google.gson.reflect.TypeToken;
-import com.squareup.okhttp.Call;
 import de.id4i.*;
 import de.id4i.api.MetaInformationApi;
-import de.id4i.api.model.ApiError;
 import de.id4i.api.model.AppInfoPresentation;
 import io.jsonwebtoken.Header;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 
 import java.io.IOException;
-import java.lang.reflect.Type;
 import java.nio.charset.Charset;
 import java.util.Date;
 import java.util.List;
