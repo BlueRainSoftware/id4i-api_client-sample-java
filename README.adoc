@@ -2,7 +2,7 @@
 = ID4i API Client Example - Java
 
 This repository contains all example Java API Client for http://id4i.de.
-For detailed documentation of ID4i see https://backend.id4i.de/docs/reference/en/reference.html#_how_to_implement_an_api_client_in_java
+For detailed documentation of ID4i see https://backend.id4i.de/docs/reference/en/reference.html#_tutorials
 
 == Prerequisites
 
