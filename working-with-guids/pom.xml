@@ -45,7 +45,7 @@
                         <configuration>
                             <archive>
                                 <manifest>
-                                    <mainClass>de.id4i.samples.java.guids.App</mainClass>
+                                    <mainClass>de.id4i.samples.java.guids.GuidTutorial</mainClass>
                                 </manifest>
                             </archive>
                             <descriptorRefs>
