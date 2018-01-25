@@ -4,10 +4,7 @@ import de.id4i.ApiClient;
 import de.id4i.ApiException;
 import de.id4i.api.CollectionsApi;
 import de.id4i.api.GUIDsApi;
-import de.id4i.api.model.CreateGuidRequest;
-import de.id4i.api.model.CreateLogisticCollectionRequest;
-import de.id4i.api.model.Id4n;
-import de.id4i.api.model.ListOfId4ns;
+import de.id4i.api.model.*;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -76,6 +73,14 @@ public class ProducerApp {
         request.setLength(128);
         return collectionsApi.createLogisticCollection(
             request,
+            newBearerToken(subject, secret),
+            LANGUAGE);
+    }
+
+    public void flagCollectionForTransfer(String collectionId) throws ApiException {
+        GuidCollection guidCollection = new GuidCollection();
+        guidCollection.setNextScanOwnership(true);
+        collectionsApi.updateLogisticCollection(collectionId, guidCollection,
             newBearerToken(subject, secret),
             LANGUAGE);
     }
