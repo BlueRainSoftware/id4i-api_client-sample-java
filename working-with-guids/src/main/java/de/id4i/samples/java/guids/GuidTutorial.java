@@ -14,9 +14,13 @@ public class GuidTutorial {
 
         try {
             ListOfId4ns guids = producerApp.createGuids(); // 2
-            producerApp.putGuidsIntoLabelledCollection(guids,"zU71YAG-epLaGdM-h4mPcbgwP6XeyFzucm5yCWK1B15imns4kr1QvTjiziWky0H5qpnCRxNLPkV5X1XWHzx2q0L4BZldvxp6PicHZVOCoKvjDHKuvKUo6OMZf5mlqRDq"); // 3
+            producerApp.putGuidsIntoLabelledCollection(guids,"puFHxUKkv7KDFYYefsOuRrWkd1lG35mCvd4mdAzV8L5o1vg25dlp7VCZ39Nped--qQsDjwxBd9FEruHiFNmFDNBOpdSO9HLamQG4-RKLSwEZID8bEKcHtB16vtDwQoQT"); // 3
 
-            Id4n shipmentCollectionId = producerApp.createLogisticCollection();
+            Id4n shipmentCollectionId = producerApp.createLogisticCollection(); // 4
+
+           // producerApp.putGuidsIntoCollection(guids, shipmentCollectionId.getId4n()); // 6
+            producerApp.putGuidsIntoCollection(guids, "aMwr2CvR3pPDqK6x0sSBYNreZ4yHjRtQcuabM6i8oLUU8BHu6TC0XkM-4SqjbatlLFSMHgY7dUACrYdQcpB8Q6Xb9iUdrilOrYd1pSGnRsbu-M4GoRQlS-KXL-JDQgjB"); // 6
+
             System.out.println(shipmentCollectionId);
         } catch (ApiException e) {
             ApiError apiError = deserialize(e);

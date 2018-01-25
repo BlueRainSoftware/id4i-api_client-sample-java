@@ -62,6 +62,13 @@ public class ProducerApp {
             LANGUAGE);
     }
 
+    public void putGuidsIntoCollection(ListOfId4ns guids, String collectionId) throws ApiException {
+        collectionsApi.addElementsToCollection(
+            collectionId, guids,
+            newBearerToken(subject, secret), LANGUAGE
+        );
+    }
+
     public Id4n createLogisticCollection() throws ApiException {
         CreateLogisticCollectionRequest request = new CreateLogisticCollectionRequest();
         request.setLabel("Shipment to Reseller - " + new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
