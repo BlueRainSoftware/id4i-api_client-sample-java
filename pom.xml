@@ -8,7 +8,7 @@
     <artifactId>api-client-samples-java</artifactId>
     <packaging>pom</packaging>
     <version>1.0</version>
-    <name>ID4i API Client Samples - Java</name>
+    <name>ID4i API Client Samples - Java API Clients</name>
 
     <url>http://id4i.de</url>
 
