@@ -1,7 +1,9 @@
 package de.id4i.samples.java.firstclient;
 
+import com.google.gson.Gson;
 import de.id4i.*;
 import de.id4i.api.MetaInformationApi;
+import de.id4i.api.model.ApiError;
 import de.id4i.api.model.AppInfoPresentation;
 import io.jsonwebtoken.Header;
 import io.jsonwebtoken.Jwts;
@@ -77,15 +79,12 @@ public class App {
             ApiResponse<AppInfoPresentation> result = apiInstance.applicationInfoWithHttpInfo(authorization, acceptLanguage);
             System.out.println(result.getData());
         } catch (ApiException e) {
-            // The response body contains a serizalized ApiError
-            // Note that all business types are deserialized automatically.
-            System.out.println(e.getResponseBody());
-
-            // If you want to deserialize the API Error that was returned, you need to do the following
-            // It look a little ugly, but you can factor this out into common error handling code
-            // Type apiErrorType = (new TypeToken<ApiError>() {}).getType();
-            // ApiError apiError = apiInstance.getApiClient().getJSON().deserialize(e.getResponseBody(),apiErrorType);
-            // System.out.println(apiError);
+            // The response body contains a serizalized ApiError. As opposed tp
+            // business types, errors are not deserialized automatically.
+            // If you want to deserialize the API Error that was returned, you need
+            // something like the following.
+            ApiError apiError = new Gson().fromJson(e.getResponseBody(),ApiError.class);
+            System.out.println(apiError);
         }
     }
 
