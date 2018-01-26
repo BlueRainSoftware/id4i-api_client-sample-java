@@ -12,10 +12,13 @@ import java.util.Date;
 import static de.id4i.samples.java.guids.Id4iApiUtils.newBearerToken;
 
 public class ProducerApp {
-    public static final String LANGUAGE = "en";
-    public static final long ORGANIZATION_ID = 8L;
+    private static final String LANGUAGE = "en";
+
+    private static final String ENV_ORGA = "PRODUCER_ID4I_ORGA";
     private static final String ENV_API_KEY = "PRODUCER_ID4I_API_KEY";
     private static final String ENV_API_KEY_SECRET = "PRODUCER_ID4I_API_KEY_SECRET";
+
+    public static long organizationId;
     private final String subject;
     private final String secret;
 
@@ -26,6 +29,7 @@ public class ProducerApp {
     public ProducerApp() {
         subject = System.getenv(ENV_API_KEY);
         secret = System.getenv(ENV_API_KEY_SECRET);
+        organizationId = Long.parseLong(System.getenv(ENV_ORGA));
 
         if (subject == null || secret == null) {
             throw new IllegalStateException(
@@ -34,6 +38,7 @@ public class ProducerApp {
         }
 
         myCustomApiClient.setUserAgent("id4i-sample-guids-producer");
+        myCustomApiClient.setBasePath("http://localhost:8080");
         guidsApi = new GUIDsApi(myCustomApiClient);
         collectionsApi = new CollectionsApi(myCustomApiClient);
     }
@@ -42,7 +47,7 @@ public class ProducerApp {
         CreateGuidRequest createGuidRequest = new CreateGuidRequest();
         createGuidRequest.setCount(10);
         createGuidRequest.setLength(128);
-        createGuidRequest.setOrganizationId(ORGANIZATION_ID);
+        createGuidRequest.setOrganizationId(organizationId);
         ListOfId4ns createdGuids =
             guidsApi.createGuid(createGuidRequest,
                 newBearerToken(subject, secret),
@@ -69,7 +74,7 @@ public class ProducerApp {
     public Id4n createLogisticCollection() throws ApiException {
         CreateLogisticCollectionRequest request = new CreateLogisticCollectionRequest();
         request.setLabel("Shipment to Reseller - " + new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
-        request.setOrganizationId(ORGANIZATION_ID);
+        request.setOrganizationId(organizationId);
         request.setLength(128);
         return collectionsApi.createLogisticCollection(
             request,
