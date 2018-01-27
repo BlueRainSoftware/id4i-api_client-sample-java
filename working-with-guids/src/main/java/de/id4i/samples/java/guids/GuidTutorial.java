@@ -22,7 +22,7 @@ public class GuidTutorial {
             //producerApp.putGuidsIntoLabelledCollection(guids,"puFHxUKkv7KDFYYefsOuRrWkd1lG35mCvd4mdAzV8L5o1vg25dlp7VCZ39Nped--qQsDjwxBd9FEruHiFNmFDNBOpdSO9HLamQG4-RKLSwEZID8bEKcHtB16vtDwQoQT"); // 3
 
             // local
-            producerApp.putGuidsIntoLabelledCollection(guids,"5NLBiSowooxibKO6Pj1v69n65t0vEeN9yXmAHcACTF-IFEPpD9h4jI1EzLfm2Us4vXn8RkyC9WfYAt6MmIV60RVJBVR23vXGeLimwswlPxqHUm-h3CM09klcRSVHjS5i"); // 3
+            producerApp.putGuidsIntoLabelledCollection(guids,"k2WtRYLbpoJyfv8riM5UVULMmNoHNYNBrYBE8qO0kClGHhLmOvupWT7d26liN0RZld4q0V8hAYhMUUF-tfFMVRAQDia5V24Q4dTbzzpzWrKlYf19UDsZS5TgtaEuRUuS"); // 3
 
             System.out.println("[Producer] Added GUIDS to labelled collection.");
 
@@ -45,6 +45,19 @@ public class GuidTutorial {
             resellerApp.takeOwnership(shipmentCollectionId.getId4n()); // 7
             System.out.println("[Reseller] Claimed ownership of collection " + shipmentCollectionId.getId4n());
 
+
+            resellerApp.takeOwnership(shipmentCollectionId.getId4n()); // 9
+            System.out.println("[Reseller] Claimed ownership of collection " + shipmentCollectionId.getId4n());
+
+            // We add aliases to some of the GUIDs
+            resellerApp.setAlias(guids.getId4ns().get(0), "gtin", "978-3200328587"); // 10
+            resellerApp.setAlias(guids.getId4ns().get(2), "gtin", "978-3200328587");
+            resellerApp.setAlias(guids.getId4ns().get(4), "gtin", "978-3200328587");
+
+            resellerApp.setAlias(guids.getId4ns().get(1), "article", "internal-article-id");
+            resellerApp.setAlias(guids.getId4ns().get(3), "article", "internal-article-id");
+            resellerApp.setAlias(guids.getId4ns().get(5), "article", "internal-article-id");
+            System.out.println("[Reseller] Set some aliases");
 
             // since we have nothing physical to scan, we just cheat and use the list of created items from the earlier steps
            // List<String> scannedItems = guids.getId4ns();

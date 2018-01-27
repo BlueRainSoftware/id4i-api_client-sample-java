@@ -4,7 +4,7 @@ import de.id4i.ApiClient;
 import de.id4i.ApiException;
 import de.id4i.api.CollectionsApi;
 import de.id4i.api.GUIDsApi;
-import de.id4i.api.model.Guid;
+import de.id4i.api.model.GuidAlias;
 import de.id4i.api.model.GuidCollection;
 
 import java.text.SimpleDateFormat;
@@ -42,10 +42,15 @@ public class ResellerApp {
     public void takeOwnership(String id) throws ApiException {
         GuidCollection guidCollectionRequest = new GuidCollection();
         guidCollectionRequest.setOwnerOrganizationId(organizationId);
-
-        // FIXME: Setting the label does not work
-        //guidCollectionRequest.setLabel("Incoming package - " + new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
+        guidCollectionRequest.setLabel("Incoming package - " + new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
         collectionsApi.updateLogisticCollection(id, guidCollectionRequest,
+            newBearerToken(subject, secret), LANGUAGE);
+    }
+
+    public void setAlias(String id4n, String aliasType, String alias) throws ApiException {
+        GuidAlias aliasObject = new GuidAlias();
+        aliasObject.setAlias(alias);
+        guidsApi.addGuidAlias(id4n, aliasType, aliasObject,
             newBearerToken(subject, secret), LANGUAGE);
     }
 }
