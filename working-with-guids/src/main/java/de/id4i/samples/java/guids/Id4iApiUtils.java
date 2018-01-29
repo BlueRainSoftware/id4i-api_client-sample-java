@@ -11,9 +11,15 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import java.nio.charset.Charset;
 import java.util.Date;
 
+/**
+ * Contains common utilities required in both producer and reseller applications.
+ * In your application, you will probably have something similar established
+ * as cross cutting functionality as well.
+ */
 public final class Id4iApiUtils {
 
     private static final String AUTHORIZATION_HEADER_BEARER_PREFIX = "Bearer ";
+    public static final String BASE_PATH = "https://id4i-develop.herokuapp.com/";
     private static Gson gson = new Gson();
 
     /**

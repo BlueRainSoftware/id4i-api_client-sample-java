@@ -12,9 +12,18 @@ import java.util.Date;
 
 import static de.id4i.samples.java.guids.Id4iApiUtils.newBearerToken;
 
+/**
+ * Represents the ID4i client on the side of the reseller.
+ * See the tutorial for details.
+ */
 public class ResellerApp {
+    // we use a different language than in the Producer app here.
+    // You'll see what happens if you get an API Error
     private static final String LANGUAGE = "de";
 
+    // We retrieve configuration values from the environment as
+    // - configuration may differ between test and production
+    // - it contains secrets that may not be visible in your sources
     private static final String ENV_ORGA = "RESELLER_ID4I_ORGA";
     private static final String ENV_API_KEY = "RESELLER_ID4I_API_KEY";
     private static final String ENV_API_KEY_SECRET = "RESELLER_ID4I_API_KEY_SECRET";
@@ -33,7 +42,7 @@ public class ResellerApp {
         organizationId = Long.parseLong(System.getenv(ENV_ORGA));
 
         resellerAppClient.setUserAgent("id4i-client-sample-reseller");
-        resellerAppClient.setBasePath("http://localhost:8080");
+        resellerAppClient.setBasePath(Id4iApiUtils.BASE_PATH); // use the development systems
 
         guidsApi = new GUIDsApi(resellerAppClient);
         collectionsApi = new CollectionsApi(resellerAppClient);

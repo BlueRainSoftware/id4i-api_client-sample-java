@@ -11,9 +11,16 @@ import java.util.Date;
 
 import static de.id4i.samples.java.guids.Id4iApiUtils.newBearerToken;
 
+/**
+ * Represents the ID4i client on the side of the producer.
+ * See the tutorial for details.
+ */
 public class ProducerApp {
     private static final String LANGUAGE = "en";
 
+    // We retrieve configuration values from the environment as
+    // - configuration may differ between test and production
+    // - it contains secrets that may not be visible in your sources
     private static final String ENV_ORGA = "PRODUCER_ID4I_ORGA";
     private static final String ENV_API_KEY = "PRODUCER_ID4I_API_KEY";
     private static final String ENV_API_KEY_SECRET = "PRODUCER_ID4I_API_KEY_SECRET";
@@ -38,7 +45,7 @@ public class ProducerApp {
         }
 
         myCustomApiClient.setUserAgent("id4i-sample-guids-producer");
-        myCustomApiClient.setBasePath("http://localhost:8080");
+        myCustomApiClient.setBasePath(Id4iApiUtils.BASE_PATH);
         guidsApi = new GUIDsApi(myCustomApiClient);
         collectionsApi = new CollectionsApi(myCustomApiClient);
     }
