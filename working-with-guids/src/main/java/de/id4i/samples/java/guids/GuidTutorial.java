@@ -13,6 +13,10 @@ import static de.id4i.samples.java.guids.Id4iApiUtils.deserialize;
  * for details.
  */
 public class GuidTutorial {
+
+    public static final String ALIAS_TYPE_GTIN = "gtin";
+    public static final String ALIAS_TYPE_ARTICLE = "article";
+
     public static void main(String[] args) {
         ProducerApp producerApp = new ProducerApp();
         ResellerApp resellerApp = new ResellerApp();
@@ -44,13 +48,13 @@ public class GuidTutorial {
             System.out.println("[Reseller] Claimed ownership of collection " + shipmentCollectionId.getId4n());
 
             // We add aliases to some of the GUIDs
-            resellerApp.setAlias(guids.getId4ns().get(0), "gtin", "978-3200328587"); // 9
-            resellerApp.setAlias(guids.getId4ns().get(2), "gtin", "978-3200328587");
-            resellerApp.setAlias(guids.getId4ns().get(4), "gtin", "978-3200328587");
+            resellerApp.setAlias(guids.getId4ns().get(0), ALIAS_TYPE_GTIN, "978-3200328587"); // 9
+            resellerApp.setAlias(guids.getId4ns().get(2), ALIAS_TYPE_GTIN, "978-3200328587");
+            resellerApp.setAlias(guids.getId4ns().get(4), ALIAS_TYPE_GTIN, "978-3200328587");
 
-            resellerApp.setAlias(guids.getId4ns().get(1), "article", "internal-article-id");
-            resellerApp.setAlias(guids.getId4ns().get(3), "article", "internal-article-id");
-            resellerApp.setAlias(guids.getId4ns().get(5), "article", "internal-article-id");
+            resellerApp.setAlias(guids.getId4ns().get(1), ALIAS_TYPE_ARTICLE, "internal-article-id");
+            resellerApp.setAlias(guids.getId4ns().get(3), ALIAS_TYPE_ARTICLE, "internal-article-id");
+            resellerApp.setAlias(guids.getId4ns().get(5), ALIAS_TYPE_ARTICLE, "internal-article-id");
             System.out.println("[Reseller] Set some aliases");
 
         } catch (ApiException e) {
