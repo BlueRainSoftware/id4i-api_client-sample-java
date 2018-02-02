@@ -61,6 +61,10 @@ for more details.
 `mvn install` should do what you expect it to.
 Use it in the root module to build all clients or in each client module (i.e. sub-directory) separately.
 
+Note that there is some redundancy within the client modules. This is a deliberate decision to have
+them self contained in an independent manner, so you have a standalone project for each tutorial without
+additional shared code/build script.
+
 == Run
 
 Each sample (module) has to be run separately.
