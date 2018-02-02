@@ -1,0 +1,7 @@
+
+= ID4i API Client Example 3 - Routing
+
+This module implements a first ID4i API client as described in the Routing tutorial
+at https://backend.id4i.de/docs/reference/en/reference.html#_how_to_set_up_routing_for_guids.
+
+The instructions on how to build and run this example is in the parent module's README.

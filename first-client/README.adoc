@@ -1,0 +1,7 @@
+
+= ID4i API Client Example 1 - First API Client
+
+This module implements a first ID4i API client as described in the first tutorial at
+https://backend.id4i.de/docs/reference/en/reference.html#_how_to_implement_your_first_api_client_in_java.
+
+The instructions on how to build and run this example is in  the parent module's README.

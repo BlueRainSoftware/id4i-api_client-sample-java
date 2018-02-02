@@ -1,7 +1,6 @@
-package de.id4i.samples.client.java;
+package de.id4i.samples.java.firstclient;
 
-import com.google.gson.reflect.TypeToken;
-import com.squareup.okhttp.Call;
+import com.google.gson.Gson;
 import de.id4i.*;
 import de.id4i.api.MetaInformationApi;
 import de.id4i.api.model.ApiError;
@@ -11,7 +10,7 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 
 import java.io.IOException;
-import java.lang.reflect.Type;
+import java.nio.charset.Charset;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -38,6 +37,7 @@ public class App {
                     + ENV_API_KEY + " and "
                     + ENV_API_KEY_SECRET + " set?");
         }
+        byte[] secretKey = secret.getBytes(Charset.forName("utf-8"));
         String jwt = Jwts.builder()
             .setSubject(subject)
             .setExpiration(new Date(System.currentTimeMillis() + 120000))
@@ -45,7 +45,7 @@ public class App {
             .setHeaderParam(Header.TYPE, "API")
             .signWith(
                 SignatureAlgorithm.HS512,
-                secret)
+                secretKey)
             .compact();
 
         return jwt;
@@ -79,15 +79,12 @@ public class App {
             ApiResponse<AppInfoPresentation> result = apiInstance.applicationInfoWithHttpInfo(authorization, acceptLanguage);
             System.out.println(result.getData());
         } catch (ApiException e) {
-            // The response body contains a serizalized ApiError
-            // Note that all business types are deserialized automatically.
-            System.out.println(e.getResponseBody());
-
-            // If you want to deserialize the API Error that was returned, you need to do the following
-            // It look a little ugly, but you can factor this out into common error handling code
-            // Type apiErrorType = (new TypeToken<ApiError>() {}).getType();
-            // ApiError apiError = apiInstance.getApiClient().getJSON().deserialize(e.getResponseBody(),apiErrorType);
-            // System.out.println(apiError);
+            // The response body contains a serizalized ApiError. As opposed tp
+            // business types, errors are not deserialized automatically.
+            // If you want to deserialize the API Error that was returned, you need
+            // something like the following.
+            ApiError apiError = new Gson().fromJson(e.getResponseBody(),ApiError.class);
+            System.out.println(apiError);
         }
     }
 
