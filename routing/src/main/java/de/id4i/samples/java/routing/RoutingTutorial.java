@@ -7,6 +7,8 @@ import de.id4i.api.RoutingApi;
 import de.id4i.api.model.*;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import static de.id4i.samples.java.routing.Id4iApiUtils.deserialize;
 import static de.id4i.samples.java.routing.Id4iApiUtils.newBearerToken;
@@ -85,6 +87,36 @@ public class RoutingTutorial {
         routingFileRequest.setOrganizationId(organizationId);
         routingApi.updateRoutingFile(routingFileRequest, routingCollectionId4n, newBearerToken(subject, secret), LANGUAGE );
         System.out.println("Updated route");
+
+        Route privateRoute = new Route();
+        privateRoute.setPublic(false);
+        privateRoute.setType("my-custom-route-type");
+        privateRoute.setPriority(10);
+
+        Map<String, String > routeParams = new HashMap<>();
+        routeParams.put("host","localhost");
+        routeParams.put("port","8080");
+        routeParams.put("path","/something/internal");
+        routeParams.put("foo", "bar");
+        privateRoute.setParams(routeParams);
+        System.out.println("Created private route " + privateRoute);
+
+        routingFile.getRoutes().add(privateRoute);
+        System.out.println("Added new route to existing routing file");
+
+        routingApi.updateRoutingFile(routingFileRequest, routingCollectionId4n, newBearerToken(subject, secret), LANGUAGE );
+        System.out.println("Updated routing file with a new private route");
+
+       Route currentRoute =  routingApi.getRoute(
+            guidId4n,
+            "my-custom-route-type",
+            newBearerToken(subject, secret), LANGUAGE,
+            true,
+            false);
+
+        System.out.println("Retrieved current route for GUID " + guidId4n + ":");
+        System.out.println(currentRoute);
+
     }
 
 
