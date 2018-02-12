@@ -4,7 +4,7 @@
     <groupId>de.id4i.samples</groupId>
     <artifactId>api-client-java-guids</artifactId>
     <packaging>jar</packaging>
-    <version>1.0-SNAPSHOT</version>
+    <version>0.1.4</version>
     <name>ID4i API Client Samples - Working with GUIDs and Collections</name>
 
     <properties>
@@ -16,7 +16,7 @@
         <dependency>
             <groupId>de.id4i.api</groupId>
             <artifactId>id4i-api-client</artifactId>
-            <version>0.1.4-SNAPSHOT</version>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>io.jsonwebtoken</groupId>
