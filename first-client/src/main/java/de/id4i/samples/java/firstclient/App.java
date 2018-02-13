@@ -77,7 +77,7 @@ public class App {
 
         // You can also try the async call.
         // Please note that the application will take some time to close in that case.
-        callApiInfoAsync(apiInstance);
+        // callApiInfoAsync(apiInstance);
     }
 
     private void callApiInfo(MetaInformationApi apiInstance) {
