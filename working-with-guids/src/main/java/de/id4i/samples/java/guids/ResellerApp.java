@@ -10,7 +10,7 @@ import de.id4i.api.model.GuidCollection;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import static de.id4i.samples.java.guids.Id4iApiUtils.newBearerToken;
+import static de.id4i.samples.java.guids.Id4iApiUtils.refreshToken;
 
 /**
  * Represents the ID4i client on the side of the reseller.
@@ -49,17 +49,19 @@ public class ResellerApp {
     }
 
     public void takeOwnership(String id) throws ApiException {
+        refreshToken(resellerAppClient, subject, secret);
+
         GuidCollection guidCollectionRequest = new GuidCollection();
         guidCollectionRequest.setOwnerOrganizationId(organizationId);
         guidCollectionRequest.setLabel("Incoming package - " + new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
-        collectionsApi.updateLogisticCollection(id, guidCollectionRequest,
-            newBearerToken(subject, secret), LANGUAGE);
+        collectionsApi.updateLogisticCollection(id, guidCollectionRequest);
     }
 
     public void setAlias(String id4n, String aliasType, String alias) throws ApiException {
+        refreshToken(resellerAppClient, subject, secret);
+
         GuidAlias aliasObject = new GuidAlias();
         aliasObject.setAlias(alias);
-        guidsApi.addGuidAlias(id4n, aliasType, aliasObject,
-            newBearerToken(subject, secret), LANGUAGE);
+        guidsApi.addGuidAlias(id4n, aliasType, aliasObject);
     }
 }

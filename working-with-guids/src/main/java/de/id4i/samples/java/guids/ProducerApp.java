@@ -9,7 +9,7 @@ import de.id4i.api.model.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import static de.id4i.samples.java.guids.Id4iApiUtils.newBearerToken;
+import static de.id4i.samples.java.guids.Id4iApiUtils.refreshToken;
 
 /**
  * Represents the ID4i client on the side of the producer.
@@ -55,46 +55,42 @@ public class ProducerApp {
         createGuidRequest.setCount(10);
         createGuidRequest.setLength(128);
         createGuidRequest.setOrganizationId(organizationId);
+
+        refreshToken(myCustomApiClient,subject, secret);
+
         ListOfId4ns createdGuids =
-            guidsApi.createGuid(createGuidRequest,
-                newBearerToken(subject, secret),
-                LANGUAGE);
+            guidsApi.createGuid(createGuidRequest);
 
         return createdGuids;
     }
 
     public void putGuidsIntoLabelledCollection(ListOfId4ns guids, String collectionId) throws ApiException {
-        collectionsApi.addElementsToLabelledCollection(
-            collectionId,
-            guids,
-            newBearerToken(subject, secret),
-            LANGUAGE);
+        refreshToken(myCustomApiClient,subject, secret);
+        collectionsApi.addElementsToLabelledCollection(collectionId, guids);
     }
 
     public void putGuidsIntoCollection(ListOfId4ns guids, String collectionId) throws ApiException {
-        collectionsApi.addElementsToCollection(
-            collectionId, guids,
-            newBearerToken(subject, secret), LANGUAGE
-        );
+        refreshToken(myCustomApiClient,subject, secret);
+
+        collectionsApi.addElementsToCollection(collectionId, guids);
     }
 
     public Id4n createLogisticCollection() throws ApiException {
+        refreshToken(myCustomApiClient,subject, secret);
+
         CreateLogisticCollectionRequest request = new CreateLogisticCollectionRequest();
         request.setLabel("Shipment to Reseller - " + new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
         request.setOrganizationId(organizationId);
         request.setLength(128);
-        return collectionsApi.createLogisticCollection(
-            request,
-            newBearerToken(subject, secret),
-            LANGUAGE);
+        return collectionsApi.createLogisticCollection(request);
     }
 
     public void flagCollectionForTransfer(String collectionId) throws ApiException {
+        refreshToken(myCustomApiClient,subject, secret);
+
         GuidCollection guidCollection = new GuidCollection();
         guidCollection.setNextScanOwnership(true);
-        collectionsApi.updateLogisticCollection(collectionId, guidCollection,
-            newBearerToken(subject, secret),
-            LANGUAGE);
+        collectionsApi.updateLogisticCollection(collectionId, guidCollection);
     }
 
 }
