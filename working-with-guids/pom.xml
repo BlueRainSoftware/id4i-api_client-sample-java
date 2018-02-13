@@ -4,7 +4,7 @@
     <groupId>de.id4i.samples</groupId>
     <artifactId>api-client-java-guids</artifactId>
     <packaging>jar</packaging>
-    <version>0.1.4</version>
+    <version>0.2.0</version>
     <name>ID4i API Client Samples - Working with GUIDs and Collections</name>
 
     <properties>
