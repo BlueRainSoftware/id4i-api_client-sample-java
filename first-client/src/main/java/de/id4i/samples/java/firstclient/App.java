@@ -69,7 +69,7 @@ public class App {
         defaultClient.setBasePath("https://id4i-sandbox.herokuapp.com/");
         ApiKeyAuth authorization = (ApiKeyAuth) defaultClient.getAuthentication("Authorization");
         authorization.setApiKey(jwt);
-        authorization.setApiKeyPrefix("Beaxrer");
+        authorization.setApiKeyPrefix("Bearer");
 
         defaultClient.addDefaultHeader("Accept-Language", "en");
 
