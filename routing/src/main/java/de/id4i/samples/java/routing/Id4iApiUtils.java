@@ -2,8 +2,10 @@ package de.id4i.samples.java.routing;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonParseException;
+import de.id4i.ApiClient;
 import de.id4i.ApiException;
 import de.id4i.api.model.ApiError;
+import de.id4i.auth.ApiKeyAuth;
 import io.jsonwebtoken.Header;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -18,19 +20,18 @@ import java.util.Date;
  */
 public final class Id4iApiUtils {
 
-    private static final String AUTHORIZATION_HEADER_BEARER_PREFIX = "Bearer ";
-    public static final String BASE_PATH = "https://id4i-develop.herokuapp.com/";
+    private static final String AUTHORIZATION_HEADER_BEARER_PREFIX = "Bearer";
+    public static final String BASE_PATH = "https://id4i-sandbox.herokuapp.com/";
     private static Gson gson = new Gson();
 
     /**
      * Create a JWT access token valid for 30 seconds from the given API Key
-     * ID and the signing secret.
+     * ID and the signing secret and updates the given api client with it.
      *
      * @param applicationKey The application key from ID4i as shown at https://backend.id4i.de/#/apikeys/
      * @param secret         The signing secret given when creating the api key
-     * @return a String representing a signed JWT
      */
-    public static String newBearerToken(String applicationKey, String secret) {
+    public static void refreshToken(ApiClient client, String applicationKey, String secret) {
         byte[] secretKey = secret.getBytes(Charset.forName("utf-8"));
         String jwt = Jwts.builder()
             .setSubject(applicationKey)
@@ -42,7 +43,9 @@ public final class Id4iApiUtils {
                 secretKey)
             .compact();
 
-        return AUTHORIZATION_HEADER_BEARER_PREFIX + jwt;
+        ApiKeyAuth authorization = (ApiKeyAuth) client.getAuthentication("Authorization");
+        authorization.setApiKey(jwt);
+        authorization.setApiKeyPrefix(AUTHORIZATION_HEADER_BEARER_PREFIX);
     }
 
     /**

@@ -56,7 +56,7 @@ public class ProducerApp {
         createGuidRequest.setLength(128);
         createGuidRequest.setOrganizationId(organizationId);
 
-        refreshToken(myCustomApiClient,subject, secret);
+        refreshToken(myCustomApiClient, subject, secret);
 
         ListOfId4ns createdGuids =
             guidsApi.createGuid(createGuidRequest);
@@ -65,18 +65,18 @@ public class ProducerApp {
     }
 
     public void putGuidsIntoLabelledCollection(ListOfId4ns guids, String collectionId) throws ApiException {
-        refreshToken(myCustomApiClient,subject, secret);
+        refreshToken(myCustomApiClient, subject, secret);
         collectionsApi.addElementsToLabelledCollection(collectionId, guids);
     }
 
     public void putGuidsIntoCollection(ListOfId4ns guids, String collectionId) throws ApiException {
-        refreshToken(myCustomApiClient,subject, secret);
+        refreshToken(myCustomApiClient, subject, secret);
 
         collectionsApi.addElementsToCollection(collectionId, guids);
     }
 
     public Id4n createLogisticCollection() throws ApiException {
-        refreshToken(myCustomApiClient,subject, secret);
+        refreshToken(myCustomApiClient, subject, secret);
 
         CreateLogisticCollectionRequest request = new CreateLogisticCollectionRequest();
         request.setLabel("Shipment to Reseller - " + new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
@@ -86,7 +86,7 @@ public class ProducerApp {
     }
 
     public void flagCollectionForTransfer(String collectionId) throws ApiException {
-        refreshToken(myCustomApiClient,subject, secret);
+        refreshToken(myCustomApiClient, subject, secret);
 
         GuidCollection guidCollection = new GuidCollection();
         guidCollection.setNextScanOwnership(true);
