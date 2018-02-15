@@ -5,6 +5,8 @@ import de.id4i.api.model.ApiError;
 import de.id4i.api.model.Id4n;
 import de.id4i.api.model.ListOfId4ns;
 
+import java.io.File;
+
 import static de.id4i.samples.java.guids.Id4iApiUtils.deserialize;
 
 /**
@@ -25,17 +27,20 @@ public class GuidTutorial {
             ListOfId4ns guids = producerApp.createGuids(); // 2
             System.out.println("[Producer] Created " + guids.getId4ns().size() + " GUIDs.");
 
-            // use the collection ID from the manually created labelled collection here.
-            String labelledCollectionId = "k2WtR...snip...UuS";
-            producerApp.putGuidsIntoLabelledCollection(guids, labelledCollectionId); // 3
-            System.out.println("[Producer] Added GUIDS to labelled collection " + labelledCollectionId);
-
+            // TODO: add the collection ID from the manually created labelled collection here.
+            String labelledCollectionId = null;//"k2WtR...snip...UuS";
+            if (labelledCollectionId!=null) {
+                producerApp.putGuidsIntoLabelledCollection(guids, labelledCollectionId); // 3
+                System.out.println("[Producer] Added GUIDS to labelled collection " + labelledCollectionId);
+            }
 
             Id4n shipmentCollectionId = producerApp.createLogisticCollection(); // 4
             System.out.println("[Producer] Created logistic collection " + shipmentCollectionId.getId4n());
 
             producerApp.putGuidsIntoCollection(guids, shipmentCollectionId.getId4n()); // 5
             System.out.println("[Producer] Added GUIDs to logistic collection " + shipmentCollectionId.getId4n());
+
+            producerApp.uploadPdf(shipmentCollectionId,new File("./working-with-guids/res/example_lieferschein.pdf"), true);
 
             producerApp.flagCollectionForTransfer(shipmentCollectionId.getId4n()); // 6
             System.out.println("[Producer] Set next-scan-ownership flag on collection " + shipmentCollectionId.getId4n());

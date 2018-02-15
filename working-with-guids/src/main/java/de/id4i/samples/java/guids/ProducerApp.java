@@ -4,8 +4,10 @@ import de.id4i.ApiClient;
 import de.id4i.ApiException;
 import de.id4i.api.CollectionsApi;
 import de.id4i.api.GUIDsApi;
+import de.id4i.api.StorageApi;
 import de.id4i.api.model.*;
 
+import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -32,6 +34,7 @@ public class ProducerApp {
     private final ApiClient myCustomApiClient = new ApiClient();
     private final GUIDsApi guidsApi;
     private final CollectionsApi collectionsApi;
+    private final StorageApi storageApi;
 
     public ProducerApp() {
         subject = System.getenv(ENV_API_KEY);
@@ -48,6 +51,7 @@ public class ProducerApp {
         myCustomApiClient.setBasePath(Id4iApiUtils.BASE_PATH);
         guidsApi = new GUIDsApi(myCustomApiClient);
         collectionsApi = new CollectionsApi(myCustomApiClient);
+        storageApi = new StorageApi(myCustomApiClient);
     }
 
     public ListOfId4ns createGuids() throws ApiException {
@@ -91,6 +95,16 @@ public class ProducerApp {
         GuidCollection guidCollection = new GuidCollection();
         guidCollection.setNextScanOwnership(true);
         collectionsApi.updateLogisticCollection(collectionId, guidCollection);
+    }
+    
+    public void uploadPdf(Id4n destination, File f, boolean published) throws ApiException {
+        refreshToken(myCustomApiClient, subject, secret);
+        Document document =
+            new Document()
+                .filename(f.getName())
+                .visibility(new Visibility()._public(published));
+        document = storageApi.createDocument( organizationId, destination.getId4n(), document, "application/pdf");
+        storageApi.writeDocument( organizationId, destination.getId4n(), document.getFilename(), f, "application/pdf", f.length());
     }
 
 }
