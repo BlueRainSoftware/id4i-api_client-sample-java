@@ -21,8 +21,16 @@ import java.util.Date;
 public final class Id4iApiUtils {
 
     private static final String AUTHORIZATION_HEADER_BEARER_PREFIX = "Bearer";
-    public static final String BASE_PATH = "https://id4i-sandbox.herokuapp.com/";
+    public static final String BASE_PATH;
     private static Gson gson = new Gson();
+
+    static {
+        String basePath = System.getenv("BASE_PATH");
+        if (basePath==null || basePath.isEmpty()){
+            basePath="https://id4i-sandbox.herokuapp.com/";
+        }
+        BASE_PATH = basePath;
+    }
 
     /**
      * Create a JWT access token valid for 30 seconds from the given API Key
