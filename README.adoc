@@ -1,7 +1,9 @@
 
 = ID4i API Client Example - Java
 
-This repository contains all example Java API Client for http://id4i.de.
+ID4i provides globally unique IDs for single workpieces and a platform to manage, and exchange data bound to IDs in an inter-organizational manner. For details, please refer to http://id4i.de.
+
+This repository contains all example Java API Client for ID4i.
 For detailed documentation of ID4i see https://backend.id4i.de/docs/reference/en/reference.html#_tutorials
 
 == Prerequisites
