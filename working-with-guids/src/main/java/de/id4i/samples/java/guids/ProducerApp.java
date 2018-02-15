@@ -103,7 +103,7 @@ public class ProducerApp {
             new Document()
                 .filename(f.getName())
                 .visibility(new Visibility()._public(published));
-        storageApi.createDocument( destination.getId4n(), organizationId, document, "application/pdf");
+        document = storageApi.createDocument( organizationId, destination.getId4n(), document, "application/pdf");
         storageApi.writeDocument( organizationId, destination.getId4n(), document.getFilename(), f, "application/pdf", f.length());
     }
 
