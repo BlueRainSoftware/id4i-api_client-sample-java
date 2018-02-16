@@ -40,8 +40,6 @@ public class GuidTutorial {
             producerApp.putGuidsIntoCollection(guids, shipmentCollectionId.getId4n()); // 5
             System.out.println("[Producer] Added GUIDs to logistic collection " + shipmentCollectionId.getId4n());
 
-            producerApp.uploadPdf(shipmentCollectionId,new File("./working-with-guids/res/example_lieferschein.pdf"), true);
-
             producerApp.flagCollectionForTransfer(shipmentCollectionId.getId4n()); // 6
             System.out.println("[Producer] Set next-scan-ownership flag on collection " + shipmentCollectionId.getId4n());
 
