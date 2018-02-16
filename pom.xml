@@ -16,5 +16,6 @@
         <module>first-client</module>
         <module>working-with-guids</module>
         <module>routing</module>
+        <module>storage</module>
     </modules>
 </project>
