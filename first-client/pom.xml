@@ -4,7 +4,7 @@
     <groupId>de.id4i.samples</groupId>
     <artifactId>api-client-java-first-client</artifactId>
     <packaging>jar</packaging>
-    <version>0.2.0</version>
+    <version>0.2.1</version>
     <name>ID4i API Client Samples - First API Call</name>
 
     <properties>
