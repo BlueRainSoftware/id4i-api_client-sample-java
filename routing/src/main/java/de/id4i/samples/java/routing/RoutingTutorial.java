@@ -11,7 +11,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static de.id4i.samples.java.routing.Id4iApiUtils.deserialize;
-import static de.id4i.samples.java.routing.Id4iApiUtils.newBearerToken;
+import static de.id4i.samples.java.routing.Id4iApiUtils.refreshToken;
 
 /**
  * Id4i routing tutorial.
@@ -25,15 +25,27 @@ public class RoutingTutorial {
     private static final String ENV_API_KEY_SECRET = "ID4I_API_KEY_SECRET";
     private static final String ENV_ORGA = "ID4I_ORGA";
 
-    private static final String LANGUAGE = "en";
-
     private final ApiClient routingTutorialClient = new ApiClient();
     private final GUIDsApi guidsApi;
     private final RoutingApi routingApi;
 
     public RoutingTutorial() {
+        String subject = System.getenv(ENV_API_KEY);
+        String secret = System.getenv(ENV_API_KEY_SECRET);
+        Long organizationId = Long.parseLong(System.getenv(ENV_ORGA));
+
+        if (subject == null || secret == null || organizationId == null) {
+            throw new IllegalStateException(
+                "Could not retrieve required environment. Are the environment variables "
+                    + ENV_API_KEY + ", "
+                    + ENV_ORGA + " and "
+                    + ENV_API_KEY_SECRET + " set?");
+        }
+
         routingTutorialClient.setUserAgent("id4i-sample-routing");
         routingTutorialClient.setBasePath(Id4iApiUtils.BASE_PATH);
+
+        refreshToken(routingTutorialClient, subject, secret);
         guidsApi = new GUIDsApi(routingTutorialClient);
         routingApi = new RoutingApi(routingTutorialClient);
     }
@@ -53,29 +65,17 @@ public class RoutingTutorial {
     }
 
     private void start() throws IOException, ApiException {
-        String subject = System.getenv(ENV_API_KEY);
-        String secret = System.getenv(ENV_API_KEY_SECRET);
         Long organizationId = Long.parseLong(System.getenv(ENV_ORGA));
-
-
-
-        if (subject == null || secret == null || organizationId == null) {
-            throw new IllegalStateException(
-                "Could not retrieve required environment. Are the environment variables "
-                    + ENV_API_KEY + ", "
-                    + ENV_ORGA + " and "
-                    + ENV_API_KEY_SECRET + " set?");
-        }
 
         String guidId4n = "8yhyErStsVpjKLQq"; // the GUID we work with in this tutorial
         String routingCollectionId4n = "A-xFHBqq4kPKx4SEgfAJ9971x1tU2EnOStHHNFvjzSQrOrmIC93qlUQX1iGFLekEXwSGLapXv-tW7fDG6xYPozitfwPGIqG0RvANcCBEJUpn1km5CKIXImqfJJjZHHZ-"; // the ID of the routing collection we work with
 
         GuidAlias gtinAlias = new GuidAlias();
         gtinAlias.setAlias("0345391802");
-        guidsApi.addGuidAlias(guidId4n, "gtin", gtinAlias, newBearerToken(subject, secret), LANGUAGE);
+        guidsApi.addGuidAlias(guidId4n, "gtin", gtinAlias);
         System.out.println("Added GTIN alias " + gtinAlias.getAlias() + " to " + guidId4n);
 
-        RoutingFile routingFile = routingApi.getRoutingFile(routingCollectionId4n, newBearerToken(subject, secret), LANGUAGE, organizationId );
+        RoutingFile routingFile = routingApi.getRoutingFile(routingCollectionId4n, organizationId );
         Route firstRoute = routingFile.getRoutes().get(0);
         System.out.println("First route of routing collection " + routingCollectionId4n);
         System.out.println(firstRoute);
@@ -85,7 +85,7 @@ public class RoutingTutorial {
         RoutingFileRequest routingFileRequest = new RoutingFileRequest();
         routingFileRequest.setRouting(routingFile);
         routingFileRequest.setOrganizationId(organizationId);
-        routingApi.updateRoutingFile(routingFileRequest, routingCollectionId4n, newBearerToken(subject, secret), LANGUAGE );
+        routingApi.updateRoutingFile(routingFileRequest, routingCollectionId4n );
         System.out.println("Updated route");
 
         Route privateRoute = new Route();
@@ -104,13 +104,12 @@ public class RoutingTutorial {
         routingFile.getRoutes().add(privateRoute);
         System.out.println("Added new route to existing routing file");
 
-        routingApi.updateRoutingFile(routingFileRequest, routingCollectionId4n, newBearerToken(subject, secret), LANGUAGE );
+        routingApi.updateRoutingFile(routingFileRequest, routingCollectionId4n );
         System.out.println("Updated routing file with a new private route");
 
        Route currentRoute =  routingApi.getRoute(
             guidId4n,
             "my-custom-route-type",
-            newBearerToken(subject, secret), LANGUAGE,
             true,
             false);
 

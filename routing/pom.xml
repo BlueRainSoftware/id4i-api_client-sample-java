@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>de.id4i.samples</groupId>
     <artifactId>api-client-java-routing</artifactId>
-    <version>0.1.4</version>
+    <version>0.2.0</version>
     <packaging>jar</packaging>
     <name>ID4i API Client Samples - Routing</name>
 

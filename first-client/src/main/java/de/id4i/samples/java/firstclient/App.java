@@ -5,6 +5,7 @@ import de.id4i.*;
 import de.id4i.api.MetaInformationApi;
 import de.id4i.api.model.ApiError;
 import de.id4i.api.model.AppInfoPresentation;
+import de.id4i.auth.ApiKeyAuth;
 import io.jsonwebtoken.Header;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -59,24 +60,30 @@ public class App {
 
         System.out.println("Created access token " + jwt);
 
-        ApiClient myCustomApiClient = new ApiClient();
-        myCustomApiClient.setUserAgent("id4i-client-sample");
-        MetaInformationApi apiInstance = new MetaInformationApi();
-        apiInstance.setApiClient(myCustomApiClient);
 
-        String authorization = "Bearer " + jwt;
-        String acceptLanguage = "en";
-        callApiInfo(apiInstance, authorization, acceptLanguage);
+
+        MetaInformationApi apiInstance = new MetaInformationApi();
+
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setUserAgent("id4i-client-sample");
+        defaultClient.setBasePath("https://id4i-sandbox.herokuapp.com/");
+        ApiKeyAuth authorization = (ApiKeyAuth) defaultClient.getAuthentication("Authorization");
+        authorization.setApiKey(jwt);
+        authorization.setApiKeyPrefix("Bearer");
+
+        defaultClient.addDefaultHeader("Accept-Language", "en");
+
+        callApiInfo(apiInstance);
 
         // You can also try the async call.
         // Please note that the application will take some time to close in that case.
-        // callApiInfoAsync(apiInstance, authorization, acceptLanguage);
+        // callApiInfoAsync(apiInstance);
     }
 
-    private void callApiInfo(MetaInformationApi apiInstance, String authorization, String acceptLanguage) {
+    private void callApiInfo(MetaInformationApi apiInstance) {
 
         try {
-            ApiResponse<AppInfoPresentation> result = apiInstance.applicationInfoWithHttpInfo(authorization, acceptLanguage);
+            ApiResponse<AppInfoPresentation> result = apiInstance.applicationInfoWithHttpInfo();
             System.out.println(result.getData());
         } catch (ApiException e) {
             // The response body contains a serizalized ApiError. As opposed tp
@@ -88,9 +95,9 @@ public class App {
         }
     }
 
-    private void callApiInfoAsync(MetaInformationApi apiInstance, String authorization, String acceptLanguage) throws ApiException {
+    private void callApiInfoAsync(MetaInformationApi apiInstance) throws ApiException {
         ApiCallback<AppInfoPresentation> callback = createApiInfoCallback();
-        apiInstance.applicationInfoAsync(authorization, acceptLanguage, callback);
+        apiInstance.applicationInfoAsync(callback);
     }
 
     private ApiCallback<AppInfoPresentation> createApiInfoCallback() {
