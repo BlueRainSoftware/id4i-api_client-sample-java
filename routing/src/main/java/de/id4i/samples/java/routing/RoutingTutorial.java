@@ -2,7 +2,7 @@ package de.id4i.samples.java.routing;
 
 import de.id4i.ApiClient;
 import de.id4i.ApiException;
-import de.id4i.api.GUIDsApi;
+import de.id4i.api.GuidsApi;
 import de.id4i.api.RoutingApi;
 import de.id4i.api.model.*;
 
@@ -26,7 +26,7 @@ public class RoutingTutorial {
     private static final String ENV_ORGA = "ID4I_ORGA";
 
     private final ApiClient routingTutorialClient = new ApiClient();
-    private final GUIDsApi guidsApi;
+    private final GuidsApi guidsApi;
     private final RoutingApi routingApi;
 
     public RoutingTutorial() {
@@ -46,7 +46,7 @@ public class RoutingTutorial {
         routingTutorialClient.setBasePath(Id4iApiUtils.BASE_PATH);
 
         refreshToken(routingTutorialClient, subject, secret);
-        guidsApi = new GUIDsApi(routingTutorialClient);
+        guidsApi = new GuidsApi(routingTutorialClient);
         routingApi = new RoutingApi(routingTutorialClient);
     }
 
@@ -111,7 +111,8 @@ public class RoutingTutorial {
             guidId4n,
             "my-custom-route-type",
             true,
-            false);
+            false,
+           false);
 
         System.out.println("Retrieved current route for GUID " + guidId4n + ":");
         System.out.println(currentRoute);

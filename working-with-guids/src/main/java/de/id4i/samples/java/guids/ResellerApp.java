@@ -3,7 +3,7 @@ package de.id4i.samples.java.guids;
 import de.id4i.ApiClient;
 import de.id4i.ApiException;
 import de.id4i.api.CollectionsApi;
-import de.id4i.api.GUIDsApi;
+import de.id4i.api.GuidsApi;
 import de.id4i.api.model.GuidAlias;
 import de.id4i.api.model.GuidCollection;
 
@@ -33,7 +33,7 @@ public class ResellerApp {
     private long organizationId;
 
     private ApiClient resellerAppClient = new ApiClient();
-    private GUIDsApi guidsApi;
+    private GuidsApi guidsApi;
     private CollectionsApi collectionsApi;
 
     public ResellerApp() {
@@ -44,7 +44,7 @@ public class ResellerApp {
         resellerAppClient.setUserAgent("id4i-client-sample-reseller");
         resellerAppClient.setBasePath(Id4iApiUtils.BASE_PATH); // use the development systems
 
-        guidsApi = new GUIDsApi(resellerAppClient);
+        guidsApi = new GuidsApi(resellerAppClient);
         collectionsApi = new CollectionsApi(resellerAppClient);
     }
 
