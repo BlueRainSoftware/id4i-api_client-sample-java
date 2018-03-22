@@ -31,8 +31,6 @@ public class StorageTutorial {
             Id4n shipmentCollectionId = localApp.createLogisticCollection(); // 4
             System.out.println("[Producer] Created logistic collection " + shipmentCollectionId.getId4n());
 
-            localApp.uploadPdf(shipmentCollectionId,new File("./storage/src/main/resources/example_lieferschein.pdf"), true);
-
             localApp.putGuidsIntoCollection(guids, shipmentCollectionId.getId4n()); // 5
             System.out.println("[Producer] Added GUIDs to logistic collection " + shipmentCollectionId.getId4n());
 

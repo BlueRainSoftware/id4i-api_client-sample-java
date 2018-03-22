@@ -3,11 +3,9 @@ package de.id4i.samples.java.guids;
 import de.id4i.ApiClient;
 import de.id4i.ApiException;
 import de.id4i.api.CollectionsApi;
-import de.id4i.api.GUIDsApi;
-import de.id4i.api.StorageApi;
+import de.id4i.api.GuidsApi;
 import de.id4i.api.model.*;
 
-import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -18,8 +16,6 @@ import static de.id4i.samples.java.guids.Id4iApiUtils.refreshToken;
  * See the tutorial for details.
  */
 public class ProducerApp {
-    private static final String LANGUAGE = "en";
-
     // We retrieve configuration values from the environment as
     // - configuration may differ between test and production
     // - it contains secrets that may not be visible in your sources
@@ -32,7 +28,7 @@ public class ProducerApp {
     private final String secret;
 
     private final ApiClient myCustomApiClient = new ApiClient();
-    private final GUIDsApi guidsApi;
+    private final GuidsApi guidsApi;
     private final CollectionsApi collectionsApi;
 
     public ProducerApp() {
@@ -48,7 +44,7 @@ public class ProducerApp {
 
         myCustomApiClient.setUserAgent("id4i-sample-guids-producer");
         myCustomApiClient.setBasePath(Id4iApiUtils.BASE_PATH);
-        guidsApi = new GUIDsApi(myCustomApiClient);
+        guidsApi = new GuidsApi(myCustomApiClient);
         collectionsApi = new CollectionsApi(myCustomApiClient);
     }
 
