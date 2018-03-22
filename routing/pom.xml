@@ -3,32 +3,30 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>de.id4i.samples</groupId>
     <artifactId>api-client-java-routing</artifactId>
-    <version>0.2.0</version>
     <packaging>jar</packaging>
-    <name>ID4i API Client Samples - Routing</name>
 
-    <properties>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
-    </properties>
+    <parent>
+        <groupId>de.id4i.samples</groupId>
+        <artifactId>api-client-samples-java</artifactId>
+        <version>0.2.0</version>
+    </parent>
+
+    <name>ID4i API Client Samples - Routing</name>
 
     <dependencies>
         <dependency>
             <groupId>de.id4i.api</groupId>
             <artifactId>id4i-api-client</artifactId>
-            <version>${project.version}</version>
-        </dependency>
+         </dependency>
         <dependency>
             <groupId>io.jsonwebtoken</groupId>
             <artifactId>jjwt</artifactId>
-            <version>0.9.0</version>
         </dependency>
-            <dependency>
-                <groupId>junit</groupId>
-                <artifactId>junit</artifactId>
-                <version>4.12</version>
-                <scope>test</scope>
-            </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <build>
