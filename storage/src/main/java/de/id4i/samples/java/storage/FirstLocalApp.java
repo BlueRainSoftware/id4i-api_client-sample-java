@@ -3,7 +3,7 @@ package de.id4i.samples.java.storage;
 import de.id4i.ApiClient;
 import de.id4i.ApiException;
 import de.id4i.api.CollectionsApi;
-import de.id4i.api.GUIDsApi;
+import de.id4i.api.GuidsApi;
 import de.id4i.api.StorageApi;
 import de.id4i.api.model.*;
 
@@ -32,7 +32,7 @@ public class FirstLocalApp {
     private final String secret;
 
     private final ApiClient myCustomApiClient = new ApiClient();
-    private final GUIDsApi guidsApi;
+    private final GuidsApi guidsApi;
     private final CollectionsApi collectionsApi;
     private final StorageApi storageApi;
 
@@ -50,7 +50,7 @@ public class FirstLocalApp {
 
         myCustomApiClient.setUserAgent("id4i-sample-guids-producer");
         myCustomApiClient.setBasePath(Id4iApiUtils.BASE_PATH);
-        guidsApi = new GUIDsApi(myCustomApiClient);
+        guidsApi = new GuidsApi(myCustomApiClient);
         collectionsApi = new CollectionsApi(myCustomApiClient);
         storageApi = new StorageApi(myCustomApiClient);
     }
