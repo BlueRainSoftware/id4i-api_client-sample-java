@@ -5,9 +5,7 @@ import de.id4i.api.model.ApiError;
 import de.id4i.api.model.Id4n;
 import de.id4i.api.model.ListOfId4ns;
 
-import java.io.File;
-
-import static de.id4i.samples.java.guids.Id4iApiUtils.deserialize;
+import static de.id4i.samples.java.common.Id4iApiUtils.deserialize;
 
 /**
  * This class implements the ID4i "Working with GUIDs" tutorial.
@@ -29,7 +27,7 @@ public class GuidTutorial {
 
             // TODO: add the collection ID from the manually created labelled collection here.
             String labelledCollectionId = null;//"k2WtR...snip...UuS";
-            if (labelledCollectionId!=null) {
+            if (labelledCollectionId != null) {
                 producerApp.putGuidsIntoLabelledCollection(guids, labelledCollectionId); // 3
                 System.out.println("[Producer] Added GUIDS to labelled collection " + labelledCollectionId);
             }

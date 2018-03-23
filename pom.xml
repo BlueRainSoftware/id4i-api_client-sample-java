@@ -7,7 +7,7 @@
     <groupId>de.id4i.samples</groupId>
     <artifactId>api-client-samples-java</artifactId>
     <packaging>pom</packaging>
-    <version>0.3.2</version>
+    <version>0.3.3-SNAPSHOT</version>
 
     <name>ID4i API Client Samples - Java API Clients</name>
 
@@ -26,6 +26,11 @@
                 <version>${project.version}</version>
             </dependency>
             <dependency>
+                <groupId>de.id4i.samples</groupId>
+                <artifactId>api-client-java-common</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
                 <groupId>io.jsonwebtoken</groupId>
                 <artifactId>jjwt</artifactId>
                 <version>0.9.0</version>
@@ -40,6 +45,7 @@
     </dependencyManagement>
 
     <modules>
+        <module>common</module>
         <module>first-client</module>
         <module>working-with-guids</module>
         <module>routing</module>

@@ -10,8 +10,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-import static de.id4i.samples.java.routing.Id4iApiUtils.deserialize;
-import static de.id4i.samples.java.routing.Id4iApiUtils.refreshToken;
+import static de.id4i.samples.java.common.Id4iApiUtils.*;
 
 /**
  * Id4i routing tutorial.
@@ -43,7 +42,7 @@ public class RoutingTutorial {
         }
 
         routingTutorialClient.setUserAgent("id4i-sample-routing");
-        routingTutorialClient.setBasePath(Id4iApiUtils.BASE_PATH);
+        routingTutorialClient.setBasePath(BASE_PATH);
 
         refreshToken(routingTutorialClient, subject, secret);
         guidsApi = new GuidsApi(routingTutorialClient);

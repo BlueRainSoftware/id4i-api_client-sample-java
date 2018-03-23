@@ -8,7 +8,7 @@
     <parent>
         <groupId>de.id4i.samples</groupId>
         <artifactId>api-client-samples-java</artifactId>
-        <version>0.3.2</version>
+        <version>0.3.3-SNAPSHOT</version>
     </parent>
 
     <name>ID4i API Client Samples - First API Call</name>
@@ -43,7 +43,7 @@
                         <configuration>
                             <archive>
                                 <manifest>
-                                    <mainClass>de.id4i.samples.java.firstclient.App</mainClass>
+                                    <mainClass>de.id4i.samples.java.common.App</mainClass>
                                 </manifest>
                             </archive>
                             <descriptorRefs>

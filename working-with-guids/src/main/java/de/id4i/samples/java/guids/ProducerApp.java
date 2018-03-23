@@ -9,7 +9,7 @@ import de.id4i.api.model.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import static de.id4i.samples.java.guids.Id4iApiUtils.refreshToken;
+import static de.id4i.samples.java.common.Id4iApiUtils.*;
 
 /**
  * Represents the ID4i client on the side of the producer.
@@ -43,7 +43,7 @@ public class ProducerApp {
         }
 
         myCustomApiClient.setUserAgent("id4i-sample-guids-producer");
-        myCustomApiClient.setBasePath(Id4iApiUtils.BASE_PATH);
+        myCustomApiClient.setBasePath(BASE_PATH);
         guidsApi = new GuidsApi(myCustomApiClient);
         collectionsApi = new CollectionsApi(myCustomApiClient);
     }

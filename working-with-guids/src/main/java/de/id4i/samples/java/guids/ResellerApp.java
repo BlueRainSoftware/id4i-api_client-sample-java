@@ -10,7 +10,8 @@ import de.id4i.api.model.GuidCollection;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import static de.id4i.samples.java.guids.Id4iApiUtils.refreshToken;
+import static de.id4i.samples.java.common.Id4iApiUtils.BASE_PATH;
+import static de.id4i.samples.java.common.Id4iApiUtils.refreshToken;
 
 /**
  * Represents the ID4i client on the side of the reseller.
@@ -42,7 +43,7 @@ public class ResellerApp {
         organizationId = Long.parseLong(System.getenv(ENV_ORGA));
 
         resellerAppClient.setUserAgent("id4i-client-sample-reseller");
-        resellerAppClient.setBasePath(Id4iApiUtils.BASE_PATH); // use the development systems
+        resellerAppClient.setBasePath(BASE_PATH); // use the development system
 
         guidsApi = new GuidsApi(resellerAppClient);
         collectionsApi = new CollectionsApi(resellerAppClient);

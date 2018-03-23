@@ -8,7 +8,7 @@
     <parent>
         <groupId>de.id4i.samples</groupId>
         <artifactId>api-client-samples-java</artifactId>
-        <version>0.3.2</version>
+        <version>0.3.3-SNAPSHOT</version>
     </parent>
 
     <name>ID4i API Client Samples - Routing</name>
@@ -17,7 +17,11 @@
         <dependency>
             <groupId>de.id4i.api</groupId>
             <artifactId>id4i-api-client</artifactId>
-         </dependency>
+        </dependency>
+        <dependency>
+            <groupId>de.id4i.samples</groupId>
+            <artifactId>api-client-java-common</artifactId>
+        </dependency>
         <dependency>
             <groupId>io.jsonwebtoken</groupId>
             <artifactId>jjwt</artifactId>
