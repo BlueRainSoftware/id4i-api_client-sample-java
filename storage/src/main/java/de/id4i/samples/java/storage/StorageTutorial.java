@@ -7,6 +7,7 @@ import de.id4i.api.StorageApi;
 import de.id4i.api.model.*;
 
 import java.io.File;
+import java.nio.charset.StandardCharsets;
 
 import static de.id4i.samples.java.common.Id4iApiUtils.*;
 
@@ -65,6 +66,9 @@ public class StorageTutorial {
 
             file = new File(classLoader.getResource("history-lesson.jpg").getFile());
             app.attachFile(guid, file, true);
+
+            app.useMircoStorage(guid, "my arbitrary character content. Could be xml, JSON or anything. Go wild.");
+
         } catch (ApiException e) {
             ApiError apiError = deserialize(e);
             System.err.println(apiError);
@@ -92,16 +96,27 @@ public class StorageTutorial {
         Document document = storageApi.createDocument(organizationId, guid, f);
         System.out.println(document);
 
-        if(publish) {
+        if (publish) {
             DocumentUpdate documentUpdate = new DocumentUpdate();
             VisibilityUpdate visibility = new VisibilityUpdate();
             visibility.setPublic(true);
             documentUpdate.setVisibility(visibility);
             storageApi.updateDocumentMetadata(organizationId, guid, f.getName(), documentUpdate);
         }
-
     }
 
+    public void useMircoStorage(String guid, String content) throws ApiException {
+        storageApi.writeToMicrostorage(
+            organizationId,
+            guid,
+            content,
+            "text/plain",
+            Long.valueOf(content.getBytes(StandardCharsets.UTF_8).length)
+        );
+
+        // Normally, you would read the data from another API client in most scenarios
+        System.out.println(new String(storageApi.readFromMicrostorage(organizationId, guid), StandardCharsets.UTF_8));
+    }
 }
 
 
