@@ -9,15 +9,13 @@ import de.id4i.api.model.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import static de.id4i.samples.java.guids.Id4iApiUtils.refreshToken;
+import static de.id4i.samples.java.common.Id4iApiUtils.*;
 
 /**
  * Represents the ID4i client on the side of the producer.
  * See the tutorial for details.
  */
 public class ProducerApp {
-    private static final String LANGUAGE = "en";
-
     // We retrieve configuration values from the environment as
     // - configuration may differ between test and production
     // - it contains secrets that may not be visible in your sources
@@ -45,7 +43,7 @@ public class ProducerApp {
         }
 
         myCustomApiClient.setUserAgent("id4i-sample-guids-producer");
-        myCustomApiClient.setBasePath(Id4iApiUtils.BASE_PATH);
+        myCustomApiClient.setBasePath(BASE_PATH);
         guidsApi = new GuidsApi(myCustomApiClient);
         collectionsApi = new CollectionsApi(myCustomApiClient);
     }
@@ -92,7 +90,6 @@ public class ProducerApp {
         guidCollection.setNextScanOwnership(true);
         collectionsApi.updateLogisticCollection(collectionId, guidCollection);
     }
-
 }
 
 

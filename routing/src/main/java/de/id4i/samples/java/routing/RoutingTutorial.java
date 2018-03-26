@@ -10,8 +10,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-import static de.id4i.samples.java.routing.Id4iApiUtils.deserialize;
-import static de.id4i.samples.java.routing.Id4iApiUtils.refreshToken;
+import static de.id4i.samples.java.common.Id4iApiUtils.*;
 
 /**
  * Id4i routing tutorial.
@@ -43,7 +42,7 @@ public class RoutingTutorial {
         }
 
         routingTutorialClient.setUserAgent("id4i-sample-routing");
-        routingTutorialClient.setBasePath(Id4iApiUtils.BASE_PATH);
+        routingTutorialClient.setBasePath(BASE_PATH);
 
         refreshToken(routingTutorialClient, subject, secret);
         guidsApi = new GuidsApi(routingTutorialClient);
@@ -75,7 +74,7 @@ public class RoutingTutorial {
         guidsApi.addGuidAlias(guidId4n, "gtin", gtinAlias);
         System.out.println("Added GTIN alias " + gtinAlias.getAlias() + " to " + guidId4n);
 
-        RoutingFile routingFile = routingApi.getRoutingFile(routingCollectionId4n, organizationId );
+        RoutingFile routingFile = routingApi.getRoutingFile(routingCollectionId4n, organizationId);
         Route firstRoute = routingFile.getRoutes().get(0);
         System.out.println("First route of routing collection " + routingCollectionId4n);
         System.out.println(firstRoute);
@@ -85,7 +84,7 @@ public class RoutingTutorial {
         RoutingFileRequest routingFileRequest = new RoutingFileRequest();
         routingFileRequest.setRouting(routingFile);
         routingFileRequest.setOrganizationId(organizationId);
-        routingApi.updateRoutingFile(routingFileRequest, routingCollectionId4n );
+        routingApi.updateRoutingFile(routingFileRequest, routingCollectionId4n);
         System.out.println("Updated route");
 
         Route privateRoute = new Route();
@@ -93,10 +92,10 @@ public class RoutingTutorial {
         privateRoute.setType("my-custom-route-type");
         privateRoute.setPriority(10);
 
-        Map<String, String > routeParams = new HashMap<>();
-        routeParams.put("host","localhost");
-        routeParams.put("port","8080");
-        routeParams.put("path","/something/internal");
+        Map<String, String> routeParams = new HashMap<>();
+        routeParams.put("host", "localhost");
+        routeParams.put("port", "8080");
+        routeParams.put("path", "/something/internal");
         routeParams.put("foo", "bar");
         privateRoute.setParams(routeParams);
         System.out.println("Created private route " + privateRoute);
@@ -104,21 +103,20 @@ public class RoutingTutorial {
         routingFile.getRoutes().add(privateRoute);
         System.out.println("Added new route to existing routing file");
 
-        routingApi.updateRoutingFile(routingFileRequest, routingCollectionId4n );
+        routingApi.updateRoutingFile(routingFileRequest, routingCollectionId4n);
         System.out.println("Updated routing file with a new private route");
 
-       Route currentRoute =  routingApi.getRoute(
+        Route currentRoute = routingApi.getRoute(
             guidId4n,
             "my-custom-route-type",
             true,
             false,
-           false);
+            false);
 
         System.out.println("Retrieved current route for GUID " + guidId4n + ":");
         System.out.println(currentRoute);
 
     }
-
 
 
 }

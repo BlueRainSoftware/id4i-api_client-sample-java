@@ -2,7 +2,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>de.id4i.samples</groupId>
-    <artifactId>api-client-java-routing</artifactId>
+    <artifactId>api-client-java-storage</artifactId>
     <packaging>jar</packaging>
 
     <parent>
@@ -11,7 +11,7 @@
         <version>0.3.3</version>
     </parent>
 
-    <name>ID4i API Client Samples - Routing</name>
+    <name>ID4i API Client Samples - Working with Micro Storage and Documents</name>
 
     <dependencies>
         <dependency>
@@ -47,7 +47,7 @@
                         <configuration>
                             <archive>
                                 <manifest>
-                                    <mainClass>de.id4i.samples.java.guids.RoutingTutorial</mainClass>
+                                    <mainClass>de.id4i.samples.java.storage.StorageTutorial</mainClass>
                                 </manifest>
                             </archive>
                             <descriptorRefs>

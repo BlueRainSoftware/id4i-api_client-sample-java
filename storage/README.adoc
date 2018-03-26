@@ -1,0 +1,5 @@
+
+= ID4i API Client Sample - Exchanging Data
+
+This module implements an ID4i API client as described in the Data Exchange tutorial
+at https://backend.id4i.de/docs/reference/en/reference.html#_how_to_exchange_data_on_id4i.
