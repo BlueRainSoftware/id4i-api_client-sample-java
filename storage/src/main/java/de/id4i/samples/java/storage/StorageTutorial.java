@@ -118,26 +118,3 @@ public class StorageTutorial {
         System.out.println(new String(storageApi.readFromMicrostorage(organizationId, guid), StandardCharsets.UTF_8));
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
