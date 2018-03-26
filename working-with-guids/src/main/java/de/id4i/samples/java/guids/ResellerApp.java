@@ -48,7 +48,6 @@ public class ResellerApp {
 
         resellerAppClient.setUserAgent("id4i-client-sample-reseller");
         resellerAppClient.setBasePath(BASE_PATH); // use the development system
-        resellerAppClient.setBasePath("http://localhost:8080/"); //FIXME
 
         guidsApi = new GuidsApi(resellerAppClient);
         collectionsApi = new CollectionsApi(resellerAppClient);

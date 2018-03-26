@@ -48,7 +48,6 @@ public class ProducerApp {
 
         myCustomApiClient.setUserAgent("id4i-sample-guids-producer");
         myCustomApiClient.setBasePath(BASE_PATH);
-        myCustomApiClient.setBasePath("http://localhost:8080/"); //FIXME
 
         guidsApi = new GuidsApi(myCustomApiClient);
         transferApi = new TransferApi(myCustomApiClient);
