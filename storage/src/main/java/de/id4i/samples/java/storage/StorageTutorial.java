@@ -67,7 +67,8 @@ public class StorageTutorial {
             file = new File(classLoader.getResource("history-lesson.jpg").getFile());
             app.attachFile(guid, file, true);
 
-            app.useMircoStorage(guid, "my arbitrary character content. Could be xml, JSON or anything. Go wild.");
+            app.useMircoStorage(guid, "my arbitrary character content. Could be <xml/>, {JSON} or anything. Go wild.");
+
 
         } catch (ApiException e) {
             ApiError apiError = deserialize(e);
@@ -103,15 +104,16 @@ public class StorageTutorial {
             documentUpdate.setVisibility(visibility);
             storageApi.updateDocumentMetadata(organizationId, guid, f.getName(), documentUpdate);
         }
+
     }
 
     public void useMircoStorage(String guid, String content) throws ApiException {
         storageApi.writeToMicrostorage(
             organizationId,
             guid,
-            content,
             "text/plain",
-            Long.valueOf(content.getBytes(StandardCharsets.UTF_8).length)
+            Long.valueOf(content.getBytes(StandardCharsets.UTF_8).length),
+            content.getBytes(StandardCharsets.UTF_8)
         );
 
         // Normally, you would read the data from another API client in most scenarios
