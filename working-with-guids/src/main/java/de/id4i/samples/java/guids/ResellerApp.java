@@ -4,8 +4,10 @@ import de.id4i.ApiClient;
 import de.id4i.ApiException;
 import de.id4i.api.CollectionsApi;
 import de.id4i.api.GuidsApi;
+import de.id4i.api.TransferApi;
 import de.id4i.api.model.GuidAlias;
 import de.id4i.api.model.GuidCollection;
+import de.id4i.api.model.TransferReceiveInfo;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -33,9 +35,11 @@ public class ResellerApp {
     private String secret;
     private long organizationId;
 
-    private ApiClient resellerAppClient = new ApiClient();
-    private GuidsApi guidsApi;
-    private CollectionsApi collectionsApi;
+    private final ApiClient resellerAppClient = new ApiClient();
+    private final GuidsApi guidsApi;
+    private final CollectionsApi collectionsApi;
+    private final TransferApi transferApi;
+
 
     public ResellerApp() {
         subject = System.getenv(ENV_API_KEY);
@@ -44,18 +48,23 @@ public class ResellerApp {
 
         resellerAppClient.setUserAgent("id4i-client-sample-reseller");
         resellerAppClient.setBasePath(BASE_PATH); // use the development system
+        resellerAppClient.setBasePath("http://localhost:8080/"); //FIXME
 
         guidsApi = new GuidsApi(resellerAppClient);
         collectionsApi = new CollectionsApi(resellerAppClient);
+        transferApi = new TransferApi(resellerAppClient);
+
     }
 
-    public void takeOwnership(String id) throws ApiException {
+    public void takeOwnership(String guid) throws ApiException {
         refreshToken(resellerAppClient, subject, secret);
+        TransferReceiveInfo tri = new TransferReceiveInfo();
+        tri.setHolderOrganizationId(organizationId);
+        transferApi.receive(guid, tri);
 
         GuidCollection guidCollectionRequest = new GuidCollection();
-        guidCollectionRequest.setOwnerOrganizationId(organizationId);
         guidCollectionRequest.setLabel("Incoming package - " + new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
-        collectionsApi.updateLogisticCollection(id, guidCollectionRequest);
+        collectionsApi.updateLogisticCollection(guid, guidCollectionRequest);
     }
 
     public void setAlias(String id4n, String aliasType, String alias) throws ApiException {

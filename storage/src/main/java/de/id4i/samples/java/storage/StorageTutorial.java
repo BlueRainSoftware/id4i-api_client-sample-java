@@ -46,8 +46,6 @@ public class StorageTutorial {
         myCustomApiClient.setUserAgent("id4i-sample-storage");
         myCustomApiClient.setBasePath(BASE_PATH);
 
-        myCustomApiClient.setBasePath("http://localhost:8080/"); //FIXME
-
         guidsApi = new GuidsApi(myCustomApiClient);
         storageApi = new StorageApi(myCustomApiClient);
     }
@@ -99,6 +97,7 @@ public class StorageTutorial {
 
         if (publish) {
             DocumentUpdate documentUpdate = new DocumentUpdate();
+
             VisibilityUpdate visibility = new VisibilityUpdate();
             visibility.setPublic(true);
             documentUpdate.setVisibility(visibility);
