@@ -4,9 +4,12 @@ import de.id4i.ApiClient;
 import de.id4i.ApiException;
 import de.id4i.api.CollectionsApi;
 import de.id4i.api.GuidsApi;
+import de.id4i.api.TransferApi;
 import de.id4i.api.model.*;
+import org.omg.IOP.TAG_ALTERNATE_IIOP_ADDRESS;
 
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
 
 import static de.id4i.samples.java.common.Id4iApiUtils.*;
@@ -30,6 +33,7 @@ public class ProducerApp {
     private final ApiClient myCustomApiClient = new ApiClient();
     private final GuidsApi guidsApi;
     private final CollectionsApi collectionsApi;
+    private final TransferApi transferApi;
 
     public ProducerApp() {
         subject = System.getenv(ENV_API_KEY);
@@ -44,7 +48,9 @@ public class ProducerApp {
 
         myCustomApiClient.setUserAgent("id4i-sample-guids-producer");
         myCustomApiClient.setBasePath(BASE_PATH);
+
         guidsApi = new GuidsApi(myCustomApiClient);
+        transferApi = new TransferApi(myCustomApiClient);
         collectionsApi = new CollectionsApi(myCustomApiClient);
     }
 
@@ -86,9 +92,12 @@ public class ProducerApp {
     public void flagCollectionForTransfer(String collectionId) throws ApiException {
         refreshToken(myCustomApiClient, subject, secret);
 
-        GuidCollection guidCollection = new GuidCollection();
-        guidCollection.setNextScanOwnership(true);
-        collectionsApi.updateLogisticCollection(collectionId, guidCollection);
+        TransferSendInfo tsi = new TransferSendInfo();
+        tsi.setNextScanOwnership(true);
+        tsi.setRecipientOrganizationIds(Arrays.asList(1L,2L,4L));
+        tsi.setKeepOwnership(false);
+
+        transferApi.prepare(collectionId,tsi);
     }
 }
 

@@ -1,0 +1,17 @@
+# Java Maven CircleCI 2.0 configuration file
+#
+# Check https://circleci.com/docs/2.0/language-java/ for more details
+#
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/openjdk:8u151-jdk-node-browsers
+        cmd: ["/bin/bash"]
+    working_directory: ~/repo
+    environment:
+      MAVEN_OPTS: -Xmx3200m
+    
+    steps:
+      - checkout
+      - run: mvn clean install
