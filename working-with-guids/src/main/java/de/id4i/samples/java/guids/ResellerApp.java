@@ -3,14 +3,17 @@ package de.id4i.samples.java.guids;
 import de.id4i.ApiClient;
 import de.id4i.ApiException;
 import de.id4i.api.CollectionsApi;
-import de.id4i.api.GUIDsApi;
+import de.id4i.api.GuidsApi;
+import de.id4i.api.TransferApi;
 import de.id4i.api.model.GuidAlias;
 import de.id4i.api.model.GuidCollection;
+import de.id4i.api.model.TransferReceiveInfo;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import static de.id4i.samples.java.guids.Id4iApiUtils.refreshToken;
+import static de.id4i.samples.java.common.Id4iApiUtils.BASE_PATH;
+import static de.id4i.samples.java.common.Id4iApiUtils.refreshToken;
 
 /**
  * Represents the ID4i client on the side of the reseller.
@@ -32,9 +35,11 @@ public class ResellerApp {
     private String secret;
     private long organizationId;
 
-    private ApiClient resellerAppClient = new ApiClient();
-    private GUIDsApi guidsApi;
-    private CollectionsApi collectionsApi;
+    private final ApiClient resellerAppClient = new ApiClient();
+    private final GuidsApi guidsApi;
+    private final CollectionsApi collectionsApi;
+    private final TransferApi transferApi;
+
 
     public ResellerApp() {
         subject = System.getenv(ENV_API_KEY);
@@ -42,19 +47,23 @@ public class ResellerApp {
         organizationId = Long.parseLong(System.getenv(ENV_ORGA));
 
         resellerAppClient.setUserAgent("id4i-client-sample-reseller");
-        resellerAppClient.setBasePath(Id4iApiUtils.BASE_PATH); // use the development systems
+        resellerAppClient.setBasePath(BASE_PATH); // use the development system
 
-        guidsApi = new GUIDsApi(resellerAppClient);
+        guidsApi = new GuidsApi(resellerAppClient);
         collectionsApi = new CollectionsApi(resellerAppClient);
+        transferApi = new TransferApi(resellerAppClient);
+
     }
 
-    public void takeOwnership(String id) throws ApiException {
+    public void takeOwnership(String guid) throws ApiException {
         refreshToken(resellerAppClient, subject, secret);
+        TransferReceiveInfo tri = new TransferReceiveInfo();
+        tri.setHolderOrganizationId(organizationId);
+        transferApi.receive(guid, tri);
 
         GuidCollection guidCollectionRequest = new GuidCollection();
-        guidCollectionRequest.setOwnerOrganizationId(organizationId);
         guidCollectionRequest.setLabel("Incoming package - " + new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
-        collectionsApi.updateLogisticCollection(id, guidCollectionRequest);
+        collectionsApi.updateLogisticCollection(guid, guidCollectionRequest);
     }
 
     public void setAlias(String id4n, String aliasType, String alias) throws ApiException {

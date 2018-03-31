@@ -1,4 +1,4 @@
-package de.id4i.samples.java.guids;
+package de.id4i.samples.java.common;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonParseException;
@@ -14,7 +14,7 @@ import java.nio.charset.Charset;
 import java.util.Date;
 
 /**
- * Contains common utilities required in both producer and reseller applications.
+ * Contains common utilities required in all sample applications.
  * In your application, you will probably have something similar established
  * as cross cutting functionality as well.
  */
