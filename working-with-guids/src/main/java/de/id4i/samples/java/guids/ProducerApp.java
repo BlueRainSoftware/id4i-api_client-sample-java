@@ -68,14 +68,8 @@ public class ProducerApp {
         return createdGuids;
     }
 
-    public void putGuidsIntoLabelledCollection(ListOfId4ns guids, String collectionId) throws ApiException {
-        refreshToken(myCustomApiClient, subject, secret);
-        collectionsApi.addElementsToLabelledCollection(collectionId, guids);
-    }
-
     public void putGuidsIntoCollection(ListOfId4ns guids, String collectionId) throws ApiException {
         refreshToken(myCustomApiClient, subject, secret);
-
         collectionsApi.addElementsToCollection(collectionId, guids);
     }
 
