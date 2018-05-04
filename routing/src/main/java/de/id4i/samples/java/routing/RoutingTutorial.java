@@ -64,7 +64,7 @@ public class RoutingTutorial {
     }
 
     private void start() throws IOException, ApiException {
-        Long organizationId = Long.parseLong(System.getenv(ENV_ORGA));
+        String organizationId = System.getenv(ENV_ORGA);
 
         String guidId4n = "8yhyErStsVpjKLQq"; // the GUID we work with in this tutorial
         String routingCollectionId4n = "A-xFHBqq4kPKx4SEgfAJ9971x1tU2EnOStHHNFvjzSQrOrmIC93qlUQX1iGFLekEXwSGLapXv-tW7fDG6xYPozitfwPGIqG0RvANcCBEJUpn1km5CKIXImqfJJjZHHZ-"; // the ID of the routing collection we work with
