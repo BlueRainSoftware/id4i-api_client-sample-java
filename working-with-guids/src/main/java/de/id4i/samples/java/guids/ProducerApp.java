@@ -95,7 +95,7 @@ public class ProducerApp {
 
         TransferSendInfo tsi = new TransferSendInfo();
         tsi.setNextScanOwnership(true);
-        tsi.setRecipientOrganizationIds(Arrays.asList(1L,2L,4L));
+        tsi.setRecipientOrganizationIds(Arrays.asList("de.id4i.sample.reseller"));
         tsi.setKeepOwnership(false);
 
         transferApi.prepare(collectionId,tsi);

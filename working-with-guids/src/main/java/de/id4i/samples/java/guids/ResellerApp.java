@@ -33,7 +33,7 @@ public class ResellerApp {
 
     private String subject;
     private String secret;
-    private long organizationId;
+    private String organizationId;
 
     private final ApiClient resellerAppClient = new ApiClient();
     private final GuidsApi guidsApi;
@@ -44,7 +44,7 @@ public class ResellerApp {
     public ResellerApp() {
         subject = System.getenv(ENV_API_KEY);
         secret = System.getenv(ENV_API_KEY_SECRET);
-        organizationId = Long.parseLong(System.getenv(ENV_ORGA));
+        organizationId = System.getenv(ENV_ORGA);
 
         resellerAppClient.setUserAgent("id4i-client-sample-reseller");
         resellerAppClient.setBasePath(BASE_PATH); // use the development system
