@@ -63,7 +63,7 @@ public class ResellerApp {
 
         GuidCollection guidCollectionRequest = new GuidCollection();
         guidCollectionRequest.setLabel("Incoming package - " + new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
-        collectionsApi.updateLogisticCollection(guid, guidCollectionRequest);
+        collectionsApi.updateCollection(guid, guidCollectionRequest);
     }
 
     public void setAlias(String id4n, String aliasType, String alias) throws ApiException {

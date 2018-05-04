@@ -24,7 +24,7 @@ public class StorageTutorial {
     private static final String ENV_API_KEY = "ID4I_API_KEY";
     private static final String ENV_API_KEY_SECRET = "ID4I_API_KEY_SECRET";
 
-    public static Long organizationId;
+    public static String organizationId;
     private final String subject;
     private final String secret;
 
@@ -35,7 +35,7 @@ public class StorageTutorial {
     public StorageTutorial() {
         subject = System.getenv(ENV_API_KEY);
         secret = System.getenv(ENV_API_KEY_SECRET);
-        organizationId = System.getenv(ENV_ORGA) == null ? null : Long.parseLong(System.getenv(ENV_ORGA));
+        organizationId = System.getenv(ENV_ORGA);
 
         if (subject == null || secret == null || organizationId == null) {
             throw new IllegalStateException(
