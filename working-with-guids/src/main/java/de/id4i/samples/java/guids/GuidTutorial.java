@@ -28,7 +28,7 @@ public class GuidTutorial {
             // TODO: add the collection ID from the manually created labelled collection here.
             String labelledCollectionId = null;//"k2WtR...snip...UuS";
             if (labelledCollectionId != null) {
-                producerApp.putGuidsIntoLabelledCollection(guids, labelledCollectionId); // 3
+                producerApp.putGuidsIntoCollection(guids, labelledCollectionId); // 3
                 System.out.println("[Producer] Added GUIDS to labelled collection " + labelledCollectionId);
             }
 
