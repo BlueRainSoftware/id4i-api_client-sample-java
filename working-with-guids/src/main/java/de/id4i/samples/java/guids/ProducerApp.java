@@ -78,7 +78,7 @@ public class ProducerApp {
 
         CreateCollectionRequest request = new CreateCollectionRequest();
         request.setLabel("Shipment to Reseller - " + new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
-        request.setType(CreateCollectionRequest.TypeEnum.LABELLED_COLLECTION);
+        request.setType(CreateCollectionRequest.TypeEnum.LOGISTIC_COLLECTION);
         request.setOrganizationId(organizationId);
         request.setLength(128);
         return collectionsApi.createCollection(request);
