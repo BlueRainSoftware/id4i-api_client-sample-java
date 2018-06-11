@@ -21,14 +21,14 @@ import java.util.Date;
 public final class Id4iApiUtils {
 
     private static final String AUTHORIZATION_HEADER_BEARER_PREFIX = "Bearer";
-    public static final String BASE_PATH = "https://id4i-sandbox.herokuapp.com/";
+    public static final String BASE_PATH = "https://sandbox.id4i.de/";
     private static Gson gson = new Gson();
 
     /**
      * Create a JWT access token valid for 30 seconds from the given API Key
      * ID and the signing secret and updates the given api client with it.
      *
-     * @param applicationKey The application key from ID4i as shown at https://backend.id4i.de/#/apikeys/
+     * @param applicationKey The application key from ID4i as shown at https://sandbox.id4i.de/#/apikeys/ or https://backend.id4i.de/#/apikeys/
      * @param secret         The signing secret given when creating the api key
      */
     public static void refreshToken(ApiClient client, String applicationKey, String secret) {

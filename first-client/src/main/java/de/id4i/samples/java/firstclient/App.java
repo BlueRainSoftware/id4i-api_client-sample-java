@@ -66,7 +66,7 @@ public class App {
 
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setUserAgent("id4i-client-sample");
-        defaultClient.setBasePath("https://id4i-sandbox.herokuapp.com/");
+        defaultClient.setBasePath("https://sandbox.id4i.de/");
         ApiKeyAuth authorization = (ApiKeyAuth) defaultClient.getAuthentication("Authorization");
         authorization.setApiKey(jwt);
         authorization.setApiKeyPrefix("Bearer");

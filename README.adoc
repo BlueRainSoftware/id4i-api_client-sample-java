@@ -21,7 +21,7 @@ To be able to connect to ID4i with an API client, you need to register and set u
 your application first. Using this key, you can sign https://jwt.io/[JWTs] to send as `Authorization` header for
 subsequent requests.
 
-. If you do not already have an ID4i account, please register at https://backend.id4i.de and log in.
+. If you do not already have an ID4i sandbox account, please register at https://sandbox.id4i.de and log in.
 . Navigate to `API Keys` and select `New API Key`
 +
 .New API Key
@@ -59,7 +59,7 @@ image::img/create-organization.png[]
 
 Now clone this repository and you are good to go.
 
-Please note that with the default settings, you will connect to the ID4i production system. Have a look into https://backend.id4i.de/docs/reference/en/reference.html#_how_to_implement_an_api_client_in_java
+Please note that with the default settings, you will connect to the ID4i sandbox system. Have a look into https://backend.id4i.de/docs/reference/en/reference.html#_how_to_implement_an_api_client_in_java
 for more details.
 
 == Build
