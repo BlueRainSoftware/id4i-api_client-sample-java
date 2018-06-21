@@ -88,7 +88,7 @@ public class ProducerApp {
         refreshToken(myCustomApiClient, subject, secret);
 
         TransferSendInfo tsi = new TransferSendInfo();
-        tsi.setNextScanOwnership(true);
+        tsi.setOpenForClaims(true);
         tsi.setRecipientOrganizationIds(Arrays.asList("de.id4i.sample.reseller"));
         tsi.setKeepOwnership(false);
 

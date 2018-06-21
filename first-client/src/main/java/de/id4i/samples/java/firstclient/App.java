@@ -62,8 +62,6 @@ public class App {
 
 
 
-        MetaInformationApi apiInstance = new MetaInformationApi();
-
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setUserAgent("id4i-client-sample");
         defaultClient.setBasePath("https://sandbox.id4i.de/");
@@ -73,6 +71,7 @@ public class App {
 
         defaultClient.addDefaultHeader("Accept-Language", "en");
 
+        MetaInformationApi apiInstance = new MetaInformationApi();
         callApiInfo(apiInstance);
 
         // You can also try the async call.
@@ -117,7 +116,7 @@ public class App {
             }
 
             public void onUploadProgress(long bytesWritten, long contentLength, boolean done) {
-                System.out.println("received " + bytesWritten + " of " + contentLength);
+                System.out.println("sent " + bytesWritten + " of " + contentLength);
                 if (done) System.out.println("done");
             }
         };

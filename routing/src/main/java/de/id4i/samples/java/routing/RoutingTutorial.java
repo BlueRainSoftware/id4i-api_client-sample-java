@@ -31,7 +31,7 @@ public class RoutingTutorial {
     public RoutingTutorial() {
         String subject = System.getenv(ENV_API_KEY);
         String secret = System.getenv(ENV_API_KEY_SECRET);
-        Long organizationId = Long.parseLong(System.getenv(ENV_ORGA));
+        String organizationId = System.getenv(ENV_ORGA);
 
         if (subject == null || secret == null || organizationId == null) {
             throw new IllegalStateException(
@@ -66,8 +66,8 @@ public class RoutingTutorial {
     private void start() throws IOException, ApiException {
         String organizationId = System.getenv(ENV_ORGA);
 
-        String guidId4n = "8yhyErStsVpjKLQq"; // the GUID we work with in this tutorial
-        String routingCollectionId4n = "A-xFHBqq4kPKx4SEgfAJ9971x1tU2EnOStHHNFvjzSQrOrmIC93qlUQX1iGFLekEXwSGLapXv-tW7fDG6xYPozitfwPGIqG0RvANcCBEJUpn1km5CKIXImqfJJjZHHZ-"; // the ID of the routing collection we work with
+        String guidId4n = "scnI4N3"; // the GUID we work with in this tutorial
+        String routingCollectionId4n = "92a4UmdndQffoEzUcKOnNaJFjUqXSN4kYnB1VTQxwYAyvNDlNEWTO5bdsoqhG1TJ0-P03uTv4-0e-qPHegzY5mgVCy16LlLEFQPGzsgHv0a0aqZqofU78GJVlLm3Qp4V"; // the ID of the routing collection we work with
 
         GuidAlias gtinAlias = new GuidAlias();
         gtinAlias.setAlias("0345391802");

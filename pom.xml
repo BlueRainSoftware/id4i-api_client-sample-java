@@ -7,7 +7,7 @@
     <groupId>de.id4i.samples</groupId>
     <artifactId>api-client-samples-java</artifactId>
     <packaging>pom</packaging>
-    <version>0.7.2</version>
+    <version>0.8.0</version>
 
     <name>ID4i API Client Samples - Java API Clients</name>
 
