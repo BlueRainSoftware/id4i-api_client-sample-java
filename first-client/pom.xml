@@ -8,7 +8,7 @@
     <parent>
         <groupId>de.id4i.samples</groupId>
         <artifactId>api-client-samples-java</artifactId>
-        <version>0.8.6</version>
+        <version>0.9.0</version>
     </parent>
 
     <name>ID4i API Client Samples - First API Call</name>
