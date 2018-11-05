@@ -58,7 +58,7 @@ public class ResellerApp {
     public void takeOwnership(String guid) throws ApiException {
         refreshToken(resellerAppClient, subject, secret);
         TransferReceiveInfo tri = new TransferReceiveInfo();
-        tri.setHolderOrganizationId(organizationId);
+        tri.setOrganizationId(organizationId);
         transferApi.receive(guid, tri);
 
         GuidCollection guidCollectionRequest = new GuidCollection();
