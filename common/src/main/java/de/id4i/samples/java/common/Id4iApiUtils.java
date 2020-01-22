@@ -21,7 +21,7 @@ import java.util.Date;
 public final class Id4iApiUtils {
 
     private static final String AUTHORIZATION_HEADER_BEARER_PREFIX = "Bearer";
-    public static final String BASE_PATH = "https://sandbox.id4i.de/";
+    public static final String BASE_PATH = "https://sandbox.id4i.de";
     private static Gson gson = new Gson();
 
     /**
