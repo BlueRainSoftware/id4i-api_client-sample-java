@@ -47,7 +47,7 @@
                         <configuration>
                             <archive>
                                 <manifest>
-                                    <mainClass>de.id4i.samples.java.guids.RoutingTutorial</mainClass>
+                                    <mainClass>de.id4i.samples.java.routing.RoutingTutorial</mainClass>
                                 </manifest>
                             </archive>
                             <descriptorRefs>
