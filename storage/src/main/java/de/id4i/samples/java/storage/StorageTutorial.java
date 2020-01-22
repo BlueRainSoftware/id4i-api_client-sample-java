@@ -79,7 +79,7 @@ public class StorageTutorial {
     public String createGuid() throws ApiException {
         CreateGuidRequest createGuidRequest = new CreateGuidRequest();
         createGuidRequest.setCount(1);
-        createGuidRequest.setLength(6);
+        createGuidRequest.setLength(10);
         createGuidRequest.setOrganizationId(organizationId);
 
         refreshToken(myCustomApiClient, subject, secret);
