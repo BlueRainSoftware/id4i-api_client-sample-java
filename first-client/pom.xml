@@ -43,7 +43,7 @@
                         <configuration>
                             <archive>
                                 <manifest>
-                                    <mainClass>de.id4i.samples.java.common.App</mainClass>
+                                    <mainClass>de.id4i.samples.java.firstclient.App</mainClass>
                                 </manifest>
                             </archive>
                             <descriptorRefs>
