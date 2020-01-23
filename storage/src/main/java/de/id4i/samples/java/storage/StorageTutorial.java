@@ -59,10 +59,10 @@ public class StorageTutorial {
 
             ClassLoader classLoader = StorageTutorial.class.getClassLoader();
 
-            File file = new File(classLoader.getResource("lieferschein.pdf").getFile());
+            File file = new File("src/main/resources/lieferschein.pdf");
             app.attachFile(guid, file, false);
 
-            file = new File(classLoader.getResource("history-lesson.jpg").getFile());
+            file = new File("src/main/resources/history-lesson.jpg");
             app.attachFile(guid, file, true);
 
             app.useMircoStorage(guid, "my arbitrary character content. Could be <xml/>, {JSON} or anything. Go wild.");
@@ -79,7 +79,7 @@ public class StorageTutorial {
     public String createGuid() throws ApiException {
         CreateGuidRequest createGuidRequest = new CreateGuidRequest();
         createGuidRequest.setCount(1);
-        createGuidRequest.setLength(6);
+        createGuidRequest.setLength(10);
         createGuidRequest.setOrganizationId(organizationId);
 
         refreshToken(myCustomApiClient, subject, secret);

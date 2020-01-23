@@ -8,7 +8,7 @@
     <parent>
         <groupId>de.id4i.samples</groupId>
         <artifactId>api-client-samples-java</artifactId>
-        <version>0.9.5</version>
+        <version>0.9.7</version>
     </parent>
 
     <name>ID4i API Client Samples - Working with GUIDs and Collections</name>

@@ -66,8 +66,8 @@ public class RoutingTutorial {
     private void start() throws IOException, ApiException {
         String organizationId = System.getenv(ENV_ORGA);
 
-        String guidId4n = "scnI4N3"; // the GUID we work with in this tutorial
-        String routingCollectionId4n = "92a4UmdndQffoEzUcKOnNaJFjUqXSN4kYnB1VTQxwYAyvNDlNEWTO5bdsoqhG1TJ0-P03uTv4-0e-qPHegzY5mgVCy16LlLEFQPGzsgHv0a0aqZqofU78GJVlLm3Qp4V"; // the ID of the routing collection we work with
+        String guidId4n = "Bm...snip...Ir"; // the GUID we work with in this tutorial
+        String routingCollectionId4n = "HzLW...snip...FfaSCTqzUUjav"; // the ID of the routing collection we work with
 
         GuidAlias gtinAlias = new GuidAlias();
         gtinAlias.setAlias("0345391802");
@@ -79,7 +79,7 @@ public class RoutingTutorial {
         System.out.println("First route of routing collection " + routingCollectionId4n);
         System.out.println(firstRoute);
 
-        firstRoute.getParams().put("url", "https://www.amazon.de/s/&field-keywords={alias_gtin}");
+        firstRoute.getParams().put("url", "https://www.amazon.de/s?k={alias_gtin}");
 
         RoutingFileRequest routingFileRequest = new RoutingFileRequest();
         routingFileRequest.setRouting(routingFile);

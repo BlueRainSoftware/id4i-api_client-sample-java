@@ -6,7 +6,6 @@ import de.id4i.api.CollectionsApi;
 import de.id4i.api.GuidsApi;
 import de.id4i.api.TransferApi;
 import de.id4i.api.model.*;
-import org.omg.IOP.TAG_ALTERNATE_IIOP_ADDRESS;
 
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
